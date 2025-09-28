@@ -155,12 +155,12 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
       </div>
 
       <div style={{ marginBottom: 12 }}>
-        <h5>
+        <h5 className="font-bold">
           Ort
           {(() => {
             const all = renderList('location')
             const applicable = all.filter(a => a.presentNow && !selected.location.includes(a.value)).length
-            return applicable > 0 ? <small style={{ marginLeft: 8, color: '#0a66c2' }}>+{applicable}</small> : null
+            return applicable > 0 ? <small style={{ marginLeft: 8, color: 'var(--primary)' }}>+{applicable}</small> : null
           })()}
         </h5>
         {visibleItemsFor('location').map(v => (
@@ -178,12 +178,12 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
       </div>
 
       <div style={{ marginBottom: 12 }}>
-        <h5>
+        <h5 className="font-bold">
           Band
           {(() => {
             const all = renderList('band')
             const applicable = all.filter(a => a.presentNow && !selected.band.includes(a.value)).length
-            return applicable > 0 ? <small style={{ marginLeft: 8, color: '#0a66c2' }}>+{applicable}</small> : null
+            return applicable > 0 ? <small style={{ marginLeft: 8, color: 'var(--primary)' }}>+{applicable}</small> : null
           })()}
         </h5>
         {visibleItemsFor('band').map(v => (
@@ -201,12 +201,12 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
       </div>
 
       <div style={{ marginBottom: 12 }}>
-        <h5>
+        <h5 className="font-bold">
           Wochentag
           {(() => {
             const all = renderList('weekday')
             const applicable = all.filter(a => a.presentNow && !(selected.weekday || []).includes(a.value)).length
-            return applicable > 0 ? <small style={{ marginLeft: 8, color: '#0a66c2' }}>+{applicable}</small> : null
+            return applicable > 0 ? <small style={{ marginLeft: 8, color: 'var(--primary)' }}>+{applicable}</small> : null
           })()}
         </h5>
         {visibleItemsFor('weekday').map(v => {
@@ -244,12 +244,12 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
       </div>
 
       <div style={{ marginBottom: 12 }}>
-        <h5>
+        <h5 className="font-bold">
           Status
           {(() => {
             const all = renderList('status_kind')
             const applicable = all.filter(a => a.presentNow && !selected.status_kind.includes(a.value)).length
-            return applicable > 0 ? <small style={{ marginLeft: 8, color: '#0a66c2' }}>+{applicable}</small> : null
+            return applicable > 0 ? <small style={{ marginLeft: 8, color: 'var(--primary)' }}>+{applicable}</small> : null
           })()}
         </h5>
         {visibleItemsFor('status_kind').map(v => (

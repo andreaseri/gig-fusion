@@ -143,147 +143,135 @@ export default function Search(): JSX.Element {
   }
 
   return (
-    <div style={{ display: 'flex', gap: 16, maxWidth: 1200 }}>
-      <FacetPanel
-        distribution={res?.facets ?? null}
-        selected={selected}
-        onToggle={onToggle}
-        onClear={() => {
-          const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
-          setSelected(empty)
-          setFacetsResetKey(k => k + 1)
-          void doSearch(empty)
-        }}
-        resetKey={facetsResetKey}
-      />
-
-      <div style={{ flex: 1 }}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
-            if (q.trim() === '') {
-              setSelected(emptySelected)
-              setFacetsResetKey(k => k + 1)
-              void doSearch(emptySelected)
-            } else {
-              void doSearch()
-            }
+    <div className="w-full">
+      <div className="w-full max-w-[1200px] mx-auto flex gap-4">
+        <FacetPanel
+          distribution={res?.facets ?? null}
+          selected={selected}
+          onToggle={onToggle}
+          onClear={() => {
+            const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
+            setSelected(empty)
+            setFacetsResetKey(k => k + 1)
+            void doSearch(empty)
           }}
-          style={{ display: 'flex', gap: 8, marginBottom: 8 }}
-        >
-          <div style={{ position: 'relative', flex: 1 }}>
-            <input
-              style={{ width: '100%', padding: '8px 32px 8px 8px', fontSize: 16, boxSizing: 'border-box' }}
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Suche (z. B. sonic)"
+          resetKey={facetsResetKey}
+        />
+
+        <div className="flex-1">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (q.trim() === '') {
+                setSelected(emptySelected)
+                setFacetsResetKey(k => k + 1)
+                void doSearch(emptySelected)
+              } else {
+                void doSearch()
+              }
+            }}
+            className="flex gap-2 mb-2"
+          >
+            <div className="relative flex-1">
+              <input
+                className="input-base text-lg pr-10"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Suche (z. B. sonic)"
                 aria-label="Suche"
-            />
-            {q && (
-              <button
-                type="button"
-                onClick={() => {
-                  setQ('')
-                  // Clear input should reset selected facets and facet view
-                  setSelected(emptySelected)
-                  setFacetsResetKey(k => k + 1)
-                  void doSearch(emptySelected)
-                }}
-                aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: 8,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  border: 'none',
-                  background: 'transparent',
-                  cursor: 'pointer',
-                  fontSize: 16,
-                  padding: 4,
-                }}
-              >
-                ×
-              </button>
-            )}
-          </div>
-        
-          {/* <button type="submit" disabled={loading} style={{ padding: '8px 12px' }}>
-            {loading ? 'Searching…' : 'Search'}
-          </button> */}
-  </form>
-
-  <AppliedFiltersBar selected={selected} onRemove={onRemove} onClear={() => { const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets; setSelected(empty); setFacetsResetKey(k => k + 1); void doSearch(empty) }} />
-
-  {error && <div style={{ color: 'crimson', marginBottom: 8 }}>{error}</div>}
-
-      {res ? (
-        <div>
-          {Array.isArray(res.hits) && res.hits.length === 0 ? (
-            <div style={{ padding: 20, textAlign: 'center', color: '#555' }}>
-              <div style={{ fontSize: 48, marginBottom: 8 }}>😕</div>
-              <div style={{ fontSize: 18, fontWeight: 600, marginBottom: 6 }}>Keine Treffer</div>
-              <div style={{ marginBottom: 12 }}>Für Ihre Suche wurden keine Ergebnisse gefunden.</div>
-              <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+              />
+              {q && (
                 <button
                   type="button"
                   onClick={() => {
-                    // clear query and filters, then refetch
                     setQ('')
-                    const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
-                    setSelected(empty)
+                    setSelected(emptySelected)
                     setFacetsResetKey(k => k + 1)
-                    void doSearch(empty)
+                    void doSearch(emptySelected)
                   }}
-                  style={{ padding: '8px 12px' }}
+                  aria-label="Clear search"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
-                  Filter zurücksetzen
+                  ×
                 </button>
-              </div>
+              )}
+            </div>
+
+            {/* <button type="submit" disabled={loading} className="px-3 py-2">{loading ? 'Searching…' : 'Search'}</button> */}
+          </form>
+
+          <AppliedFiltersBar selected={selected} onRemove={onRemove} onClear={() => { const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets; setSelected(empty); setFacetsResetKey(k => k + 1); void doSearch(empty) }} />
+
+          {error && <div className="text-red-600 mb-2">{error}</div>}
+
+          {res ? (
+            <div>
+              {Array.isArray(res.hits) && res.hits.length === 0 ? (
+                <div className="p-5 text-center text-gray-600">
+                  <div className="text-4xl mb-2">😕</div>
+                  <div className="text-lg font-semibold mb-1">Keine Treffer</div>
+                  <div className="mb-3">Für Ihre Suche wurden keine Ergebnisse gefunden.</div>
+                  <div className="flex gap-2 justify-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setQ('')
+                        const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
+                        setSelected(empty)
+                        setFacetsResetKey(k => k + 1)
+                        void doSearch(empty)
+                      }}
+                      className="px-3 py-2 border rounded-md"
+                    >
+                      Filter zurücksetzen
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="mb-3">
+                    {Array.isArray(res.hits) && res.hits.slice(0, limit).map((h: any) => (
+                      <div key={h.id} className="flex flex-col">
+                        <div className="p-2 border-b border-gray-100 grid grid-cols-[64px_1fr] gap-3 items-center">
+                          <div className="flex items-center justify-center">
+                            <LeadingTile date={h.date} />
+                          </div>
+                          <div>
+                            <InfoTile band={h.band} location={h.location} price_eur={h.price_eur} status_kind={h.status_kind} />
+                          </div>
+                        </div>
+                        <div className="hidden">
+                          <StatusTile status={h.status_kind} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setRawExpanded(v => !v)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        setRawExpanded(v => !v)
+                      }
+                    }}
+                    aria-pressed={rawExpanded}
+                    aria-label={rawExpanded ? 'Raw data einklappen' : 'Raw data anzeigen'}
+                    className="flex items-center justify-between cursor-pointer"
+                  >
+                    <h4 className="m-0">Raw data</h4>
+                    <span className="text-lg">{rawExpanded ? '▲' : '▼'}</span>
+                  </div>
+                  {rawExpanded && <JsonBlock data={res} />}
+                </div>
+              )}
             </div>
           ) : (
-            <div>
-              <div style={{ marginBottom: 12 }}>
-                {Array.isArray(res.hits) && res.hits.slice(0, limit).map((h: any) => (
-                  <div key={h.id} style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ padding: 8, borderBottom: '1px solid #eee', display: 'grid', gridTemplateColumns: '64px 1fr', gap: 12, alignItems: 'center' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <LeadingTile date={h.date} />
-                      </div>
-                      <div>
-                        <InfoTile band={h.band} location={h.location} price_eur={h.price_eur} status_kind={h.status_kind} />
-                      </div>
-                    </div>
-                    <div style={{ display: 'none' }}>
-                      <StatusTile status={h.status_kind} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => setRawExpanded(v => !v)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault()
-                    setRawExpanded(v => !v)
-                  }
-                }}
-                aria-pressed={rawExpanded}
-                aria-label={rawExpanded ? 'Rohantwort einklappen' : 'Rohantwort anzeigen'}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}
-              >
-                <h4 style={{ margin: 0 }}>Rohantwort</h4>
-                <span style={{ fontSize: 16 }}>{rawExpanded ? '▲' : '▼'}</span>
-              </div>
-              {rawExpanded && <JsonBlock data={res} />}
-            </div>
+            <div aria-hidden={true} className="text-gray-600" />
           )}
         </div>
-      ) : (
-        <div aria-hidden={true} style={{ color: '#666' }} />
-      )}
       </div>
     </div>
   )

@@ -16,16 +16,16 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
   if (chips.length === 0) return null
 
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 12 }}>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <div className="flex gap-2 items-center mb-3">
+      <div className="flex gap-2 flex-wrap">
         {chips.map(c => (
           <button
             key={`${c.facet}:${c.value}`}
             onClick={() => onRemove(c.facet, c.value)}
-            style={{ background: '#eee', border: 'none', padding: '6px 8px', borderRadius: 16, cursor: 'pointer' }}
+            className="chip hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label={`Filter entfernen ${c.facet} ${c.value}`}
           >
-            <strong style={{ marginRight: 6 }}>{(() => {
+            <strong className="mr-2 text-xs text-gray-700 dark:text-gray-200">{(() => {
               switch (c.facet) {
                 case 'location': return 'Ort'
                 case 'band': return 'Band'
@@ -33,7 +33,8 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
                 case 'weekday': return 'Wochentag'
                 default: return c.facet
               }
-            })()}:</strong> {(() => {
+            })()}:</strong>
+            <span className="truncate max-w-xs">{(() => {
               if (c.facet === 'weekday') {
                 const weekdayMap: Record<string, string> = {
                   mon: 'Mo',
@@ -54,12 +55,12 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
                 return weekdayMap[c.value.toLowerCase()] ?? c.value
               }
               return c.value
-            })()} 
+            })()}</span>
           </button>
         ))}
       </div>
-      <div style={{ marginLeft: 'auto' }}>
-        <button onClick={onClear} style={{ fontSize: 12 }}>Alle löschen</button>
+      <div className="ml-auto">
+        <button onClick={onClear} className="text-sm text-gray-600 dark:text-gray-300">Alle löschen</button>
       </div>
     </div>
   )
