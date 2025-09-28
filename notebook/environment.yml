@@ -1,0 +1,23 @@
+name: eventing
+
+channels:
+- defaults
+- conda-forge
+
+dependencies:
+- python=3.11
+- requests
+- beautifulsoup4
+- spotipy
+- notebook
+- jupyterlab
+- ipykernel
+- pandas         # (optional, for CSV/JSON exports)
+- matplotlib     # (optional, for plots)
+- numpy
+- pip
+- pip:
+  - musicbrainzngs
+  - meilisearch
+
+prefix: /Users/andreaseri/miniconda3

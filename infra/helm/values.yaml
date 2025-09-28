@@ -1,0 +1,9 @@
+replicaCount: 1
+
+image:
+  repository: yourrepo/backend
+  tag: latest
+
+meilisearch:
+  url: http://meilisearch:7700
+  apiKey: ""

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: eventing
+version: 0.1.0
+description: Helm chart for eventing monorepo (backend, frontend, scraper)
