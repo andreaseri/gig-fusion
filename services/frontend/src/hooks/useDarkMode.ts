@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const KEY = 'gigfushion:color-scheme'
+const KEY = 'gigfusion:color-scheme'
 
 export default function useDarkMode() {
   const [isDark, setIsDark] = useState<boolean>(() => {
