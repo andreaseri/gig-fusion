@@ -44,9 +44,9 @@ export default function LeadingTile({ date }: { date: string | number | Date | n
         boxShadow: 'inset 0 -1px 0 rgba(0,0,0,0.02)'
       }}
     >
-      <div style={{ fontSize: 12, color: '#1f2937', opacity: 0.9 }}>{weekday}</div>
-      <div style={{ fontSize: 20, fontWeight: 700, lineHeight: '20px' }}>{day}</div>
-      <div style={{ fontSize: 12, color: '#1f2937', opacity: 0.9 }}>{month}</div>
+      <div style={{ fontSize: 12, color: 'var(--text)', opacity: 0.9 }}>{weekday}</div>
+      <div style={{ fontSize: 20, fontWeight: 700, lineHeight: '20px', color: 'var(--text)' }}>{day}</div>
+      <div style={{ fontSize: 12, color: 'var(--text)', opacity: 0.9 }}>{month}</div>
     </div>
   )
 }

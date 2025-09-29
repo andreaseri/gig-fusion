@@ -17,7 +17,7 @@ export default function StatusTile({ status }: { status?: string }) {
           transform: 'rotate(-90deg)',
           transformOrigin: 'center',
           fontSize: 12,
-          color: '#fff',
+          color: 'var(--text)',
           background: '#6b7280',
           padding: '4px 6px',
           borderRadius: 4,
