@@ -22,7 +22,7 @@ Top-level scripts
 - `./scripts/start-parse.sh`: run the scraper/parser to produce `concert_events_*.json` files. Example:
 
   ```bash
-  SCRAPER_OUTPUT_DIR="data/raw/underdog" ./scripts/start-parse.sh
+  ./scripts/start-parse.sh --path "data/raw/underdog"
   ```
 
 - `./scripts/start-reindex.sh`: index the latest or a specific JSON file into Meilisearch. Examples:

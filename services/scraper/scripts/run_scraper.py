@@ -1,5 +1,4 @@
 import os
-import sys
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -12,12 +11,7 @@ from musicbrainzngs.musicbrainz import NetworkError
 import json
 import os
 from typing import Optional
-
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-SRC_DIR = os.path.normpath(os.path.join(THIS_DIR, '..', 'src'))
-if SRC_DIR not in sys.path:
-    sys.path.insert(0, SRC_DIR)
-
+import argparse
 from datetime import datetime
 
 # set a stable user agent once at import time
@@ -299,14 +293,15 @@ def isoify(events):
     return out
 
 def main():
-    import os
-
-    out_dir = os.getenv("SCRAPER_OUTPUT_DIR") or os.getenv("SCRAPER_OUTPUT_PATH")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", help="Directory to save the output JSON file", default=os.getenv("SCRAPER_OUTPUT_DIR") or os.getenv("SCRAPER_OUTPUT_PATH"))
+    args = parser.parse_args()
 
     events = fetch_events()
     events = isoify(events)
-    if out_dir:
-        save_events(events, basepath="concert_events", path=out_dir)
+
+    if args.path:
+        save_events(events, basepath="concert_events", path=args.path)
     else:
         save_events(events, basepath="concert_events")
 
