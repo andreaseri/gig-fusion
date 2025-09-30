@@ -1,13 +1,17 @@
 [tool.poetry]
-name = "eventing-backend"
+name = "gigfusion-backend"
 version = "0.1.0"
-description = "FastAPI backend for eventing"
+package-mode = false
+description = "FastAPI backend for gigfusion"
+authors = ["Andreas Eri <andreas@eri.io>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "*"
-uvicorn = "*"
-meilisearch = "*"
+python = "^3.13"
+
+fastapi = { version = "^0.118.0", extras = ["all"] }
+uvicorn = { version = "^0.37.0", extras = ["standard"] }
+meilisearch = "^0.37.0"
+gunicorn = "^23.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

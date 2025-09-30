@@ -1,4 +1,8 @@
 version: '3.8'
+
+networks:
+  gigfusion
+
 services:
   meilisearch:
     image: getmeili/meilisearch:latest
@@ -6,24 +10,68 @@ services:
       - "7700:7700"
     environment:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-masterKey}
-    volumes:
-      - ./data/data.ms:/data.ms
+    networks:
+      - gigfusion
 
   backend:
-    build: ./services/backend
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
     ports:
       - "8000:8000"
     environment:
       - MEILI_URL=http://meilisearch:7700
       - MEILI_API_KEY=${MEILI_MASTER_KEY:-masterKey}
     depends_on:
-      - meilisearch
+      # - meilisearch
+      # - scraper
+      - reindex
+    networks:
+      - gigfusion
 
   frontend:
-    build: ./services/frontend
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
     ports:
       - "3000:3000"
     environment:
       - VITE_BACKEND_URL=http://localhost:8000
     depends_on:
       - backend
+    networks:
+      - gigfusion
+
+  scraper:
+    build: ./services/scraper
+    environment:
+      # where the scraper will write concert_events_*.json inside the container
+      - SCRAPER_OUTPUT_DIR=/data/raw/underdog
+    volumes:
+      # persist scraper output to repo so reindexing can pick it up
+      - ./data/raw/underdog:/data/raw/underdog
+    depends_on:
+      - meilisearch
+    networks:
+      - gigfusion
+
+  reindex:
+    build: ./services/scraper
+    # Reindex uses the reindex.sh wrapper which expects a meili url and api key
+    entrypoint: ["/bin/bash","-c"]
+    command: ["/app/scripts/reindex.sh --path /data/raw/underdog --meili-url http://meilisearch:7700 --api-key ${MEILI_MASTER_KEY:-masterKey}"]
+    environment:
+      - MEILI_URL=http://meilisearch:7700
+      - API_KEY=${MEILI_MASTER_KEY:-masterKey}
+    volumes:
+      - ./data/raw/underdog:/data/raw/underdog
+    depends_on:
+      - scraper
+    networks:
+    - gigfusion

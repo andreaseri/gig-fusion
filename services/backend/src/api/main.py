@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import index, search
+from .routes import search
 
 
 def create_app():
-    app = FastAPI(title="eventing-backend")
+    app = FastAPI(title="gigfusion-backend")
 
     # Development CORS - allow local frontend origins used by Vite dev server
     origins = [
@@ -20,7 +20,6 @@ def create_app():
         allow_headers=["*"],
     )
 
-    app.include_router(index.router)
     app.include_router(search.router)
     return app
 
