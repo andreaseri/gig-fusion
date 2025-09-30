@@ -49,29 +49,16 @@ services:
       - gigfusion
 
   scraper:
-    build: ./services/scraper
+    build: 
+      context: ./services/scraper
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
     environment:
-      # where the scraper will write concert_events_*.json inside the container
-      - SCRAPER_OUTPUT_DIR=/data/raw/underdog
-    volumes:
-      # persist scraper output to repo so reindexing can pick it up
-      - ./data/raw/underdog:/data/raw/underdog
+      - MEILI_URL=http://meilisearch:7700
+      - MEILI_API_KEY=${MEILI_MASTER_KEY:-masterKey}
     depends_on:
       - meilisearch
     networks:
       - gigfusion
-
-  reindex:
-    build: ./services/scraper
-    # Reindex uses the reindex.sh wrapper which expects a meili url and api key
-    entrypoint: ["/bin/bash","-c"]
-    command: ["/app/scripts/reindex.sh --path /data/raw/underdog --meili-url http://meilisearch:7700 --api-key ${MEILI_MASTER_KEY:-masterKey}"]
-    environment:
-      - MEILI_URL=http://meilisearch:7700
-      - API_KEY=${MEILI_MASTER_KEY:-masterKey}
-    volumes:
-      - ./data/raw/underdog:/data/raw/underdog
-    depends_on:
-      - scraper
-    networks:
-    - gigfusion
