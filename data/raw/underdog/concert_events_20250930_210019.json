@@ -1,44 +1,5 @@
 [
   {
-    "origin": "28.09. The Midnight 43,50 € Ausverkauft!",
-    "date": "2025-09-28T00:00:00",
-    "band": "The Midnight",
-    "location": "Live Music Hall",
-    "price_eur": 43.5,
-    "status_kind": "ausverkauft",
-    "new_location": "",
-    "status_raw": "Ausverkauft!",
-    "section": "Live Music Hall",
-    "members": [],
-    "genres": []
-  },
-  {
-    "origin": "29.09. Malou Lovis 29 €",
-    "date": "2025-09-29T00:00:00",
-    "band": "Malou Lovis",
-    "location": "Gebäude 9",
-    "price_eur": 29.0,
-    "status_kind": "verfügbar",
-    "new_location": "",
-    "status_raw": "",
-    "section": "Gebäude 9",
-    "members": [],
-    "genres": []
-  },
-  {
-    "origin": "29.09. Little Simz 56,75 € Ausverkauft!",
-    "date": "2025-09-29T00:00:00",
-    "band": "Little Simz",
-    "location": "Palladium",
-    "price_eur": 56.75,
-    "status_kind": "ausverkauft",
-    "new_location": "",
-    "status_raw": "Ausverkauft!",
-    "section": "Palladium",
-    "members": [],
-    "genres": []
-  },
-  {
     "origin": "30.09. Jeffrey Lewis 26,96 €",
     "date": "2025-09-30T00:00:00",
     "band": "Jeffrey Lewis",
@@ -4858,6 +4819,45 @@
     "new_location": "",
     "status_raw": "",
     "section": "Stollwerck",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "28.09. The Midnight 43,50 € Ausverkauft!",
+    "date": "2026-09-28T00:00:00",
+    "band": "The Midnight",
+    "location": "Live Music Hall",
+    "price_eur": 43.5,
+    "status_kind": "ausverkauft",
+    "new_location": "",
+    "status_raw": "Ausverkauft!",
+    "section": "Live Music Hall",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "29.09. Malou Lovis 29 €",
+    "date": "2026-09-29T00:00:00",
+    "band": "Malou Lovis",
+    "location": "Gebäude 9",
+    "price_eur": 29.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Gebäude 9",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "29.09. Little Simz 56,75 € Ausverkauft!",
+    "date": "2026-09-29T00:00:00",
+    "band": "Little Simz",
+    "location": "Palladium",
+    "price_eur": 56.75,
+    "status_kind": "ausverkauft",
+    "new_location": "",
+    "status_raw": "Ausverkauft!",
+    "section": "Palladium",
     "members": [],
     "genres": []
   }

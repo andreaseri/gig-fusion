@@ -1,11 +1,13 @@
 [tool.poetry]
-name = "eventing-scraper"
+name = "gigfusion-scraper"
 version = "0.1.0"
-description = "Scraper for eventing"
-authors = ["you <you@example.com>"]
+package-mode = false
+description = "Scraper for gigfusion"
+authors = ["Andreas Eri <andreas@eri.io>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.13"
+
 requests = "*"
 beautifulsoup4 = "*"
 python-dateutil = "*"
