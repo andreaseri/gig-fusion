@@ -38,5 +38,10 @@ COPY --from=builder /install /usr/local
 # Copy app source
 COPY src/ /app/
 
+ENV CORS_ALLOW_ORIGINS="*"
+ENV CORS_ALLOW_METHODS="GET,POST,PUT,DELETE,OPTIONS"
+ENV CORS_ALLOW_HEADERS="*"
+ENV CORS_ALLOW_CREDENTIALS="false"
+
 EXPOSE 8000
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

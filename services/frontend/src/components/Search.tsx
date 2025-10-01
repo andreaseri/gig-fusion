@@ -221,7 +221,7 @@ export default function Search(): JSX.Element {
                         setFacetsResetKey(k => k + 1)
                         void doSearch(empty)
                       }}
-                      className="px-3 py-2 border rounded-md"
+                      className="px-3 py-2 border rounded"
                     >
                       Filter zurücksetzen
                     </button>

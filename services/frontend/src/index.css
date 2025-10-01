@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --bg: #f7fafc;
   --card: #ffffff;
+  --border: #e5e7eb; /* tailwind gray-200 */
+  --chip: #f3f4f6; /* tailwind gray-100 */
   --muted: #6b7280;
   --primary: #0a66c2;
   --text: #0f172a;
@@ -13,18 +13,35 @@
 .dark {
   --bg: #0b1220;
   --card: #071024;
-  --muted: #9aa4b2;
+  --border: #374151; /* tailwind gray-700 */
+  --chip: #1f2937; /* tailwind gray-800 */
+  --muted: #dfe3e9;
   --primary: #2b8bf6;
   --text: #e6eef8;
 }
 
 /* small helpers */
 .input-base {
-  @apply w-full rounded-md px-3 py-2 bg-[color:var(--card)] border border-gray-200 dark:border-gray-700 focus:outline-none;
+  /* Tailwind-equivalent styles (explicit to avoid @apply linter issues) */
+  width: 100%;
+  border-radius: 0.375rem; /* rounded */
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  border: 1px solid var(--border);
+  background-color: var(--card);
   color: var(--text);
 }
+.input-base:focus {
+  outline: none;
+}
 .chip {
-  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-sm;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  padding: 0.25rem 0.75rem; /* py-1 px-3 */
+  border-radius: 9999px; /* rounded-full */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+  background-color: var(--chip);
   color: var(--text);
 }
 
