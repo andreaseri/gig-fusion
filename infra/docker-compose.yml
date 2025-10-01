@@ -38,7 +38,7 @@ services:
         - linux/amd64
         - linux/arm64
     ports:
-      - "3000:3000"
+      - "80:80"
     environment:
       - VITE_BACKEND_URL=http://localhost:8000
     depends_on:
