@@ -22,7 +22,7 @@ Top-level scripts
 - `./scripts/start-parse.sh`: run the scraper/parser to produce `concert_events_*.json` files. Example:
 
   ```bash
-  ./scripts/start-parse.sh --output-dir data/raw/underdog
+  ./scripts/start-parse.sh --path "data/raw/underdog"
   ```
 
 - `./scripts/start-reindex.sh`: index the latest or a specific JSON file into Meilisearch. Examples:
@@ -32,13 +32,7 @@ Top-level scripts
   ./scripts/start-reindex.sh --file data/raw/underdog/concert_events_20250922_184039.json
   API_KEY="tiMpun-mipvy5-tehxiw" ./scripts/start-reindex.sh --path data/raw/underdog
   ```
-
-- `./scripts/ingest.sh`: runs `scripts/ingest_meilis.py` to ingest the latest file(s) into Meilisearch. Example:
-
-  ```bash
-  ./scripts/ingest.sh --meili-url http://localhost:7700 --api-key "tiMpun-mipvy5-tehxiw"
-  ```
-
+  
 Notes
 
 - All scripts default to using the repository `.conda/bin/python` where available; override with `PYTHON_PATH`.

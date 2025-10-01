@@ -1,4 +1,3 @@
-import React from 'react'
 import type { SelectedFacets } from './FacetPanel'
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
   onClear: () => void
 }
 
-export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
+function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
   const chips: Array<{ facet: keyof SelectedFacets; value: string }> = []
   Object.entries(selected).forEach(([facet, values]) => {
     ;(values as string[]).forEach(v => chips.push({ facet: facet as keyof SelectedFacets, value: v }))
@@ -25,7 +24,7 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
             className="chip hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label={`Filter entfernen ${c.facet} ${c.value}`}
           >
-            <strong className="mr-2 text-xs text-gray-700 dark:text-gray-200">{(() => {
+            <strong className="mr-2 text-xs text-gray-500 dark:text-gray-500">{(() => {
               switch (c.facet) {
                 case 'location': return 'Ort'
                 case 'band': return 'Band'
@@ -60,8 +59,10 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
         ))}
       </div>
       <div className="ml-auto">
-        <button onClick={onClear} className="text-sm text-gray-600 dark:text-gray-300">Alle löschen</button>
+        <button onClick={onClear} className="text-sm text-gray-500 dark:text-gray-500">Alle löschen</button>
       </div>
     </div>
   )
 }
+
+export default AppliedFiltersBar;

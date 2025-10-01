@@ -112,8 +112,6 @@ def search(
     for k in recompute_keys:
         merged_facets[k] = recomputed_facets.get(k, {})
 
-    print(res)
-
     # normalize response for the Pydantic model
     response = {
         "hits": hits,

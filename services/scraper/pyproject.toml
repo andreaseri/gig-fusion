@@ -1,14 +1,18 @@
 [tool.poetry]
-name = "eventing-scraper"
+name = "gigfusion-dataset"
 version = "0.1.0"
-description = "Scraper for eventing"
-authors = ["you <you@example.com>"]
+package-mode = false
+description = "Date enrichment for gigfusion"
+authors = ["Andreas Eri <andreas@eri.io>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-requests = "*"
-beautifulsoup4 = "*"
-python-dateutil = "*"
+python = "^3.13"
+
+requests = "^2.32.5"
+beautifulsoup4 = "^4.14.2"
+python-dateutil = "^2.9.0.post0"
+musicbrainzngs = "^0.7.1"
+meilisearch = "^0.37.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

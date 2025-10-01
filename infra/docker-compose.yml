@@ -1,0 +1,62 @@
+version: '3.8'
+
+networks:
+  gigfusion
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-masterKey}
+    networks:
+      - gigfusion
+
+  backend:
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    ports:
+      - "8000:8000"
+    environment:
+      - MEILI_URL=http://meilisearch:7700
+      - MEILI_API_KEY=${MEILI_MASTER_KEY:-masterKey}
+    depends_on:
+      - seed
+    networks:
+      - gigfusion
+
+  frontend:
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    ports:
+      - "80:80"
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - gigfusion
+
+  seed:
+    build: 
+      context: ./services/scraper
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    environment:
+      - MEILI_URL=http://meilisearch:7700
+      - MEILI_API_KEY=${MEILI_MASTER_KEY:-masterKey}
+    depends_on:
+      - meilisearch
+    networks:
+      - gigfusion

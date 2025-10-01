@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 export type FacetValue = { value: string; count: number }
 
@@ -20,15 +20,15 @@ export type FacetPanelProps = {
   resetKey?: number
 }
 
-function valuesFromDist(dist?: Record<string, number>) {
-  if (!dist) return [] as FacetValue[]
-  return Object.entries(dist).map(([value, count]) => ({ value, count }))
-}
+// function valuesFromDist(dist?: Record<string, number>) {
+//   if (!dist) return [] as FacetValue[]
+//   return Object.entries(dist).map(([value, count]) => ({ value, count }))
+// }
 
 type FacetKeys = 'location' | 'band' | 'status_kind' | 'weekday'
 
 
-export default function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: FacetPanelProps) {
+function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: FacetPanelProps) {
   // Keep last-seen counts per facet value so numbers don't jump when filters change.
   const weekdayOrder = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
   const orderIndex = (v: string) => {
@@ -138,7 +138,7 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
   }
 
   return (
-    <aside style={{ width: 260, paddingRight: 12 }}>
+    <aside className="flex-none" style={{ width: 260, paddingRight: 12 }}>
       <div style={{ marginBottom: 12 }}>
         <strong>Filter</strong>
         <div style={{ marginTop: 6 }}>
@@ -268,3 +268,5 @@ export default function FacetPanel({ distribution, selected, onToggle, onClear, 
     </aside>
   )
 }
+
+export default FacetPanel;

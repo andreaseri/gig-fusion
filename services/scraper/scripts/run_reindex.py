@@ -80,6 +80,9 @@ def main():
     parser.add_argument("--index", help="Meilisearch index name", default="events")
     args = parser.parse_args()
 
+    # print("Arguments:", args)
+    # exit(0)
+    
     if args.file:
         candidate = args.file
         if not os.path.exists(candidate):

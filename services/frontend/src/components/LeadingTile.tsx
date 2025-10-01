@@ -1,4 +1,3 @@
-import React from 'react'
 
 function weekdayShortDe(date: Date): string {
   const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
@@ -11,7 +10,7 @@ function monthShortDe(date: Date): string {
   return months[date.getMonth()] || ''
 }
 
-export default function LeadingTile({ date }: { date: string | number | Date | null | undefined }) {
+function LeadingTile({ date }: { date: string | number | Date | null | undefined }) {
   let d: Date | null = null
   try {
     if (date == null || date === '') d = null
@@ -50,3 +49,5 @@ export default function LeadingTile({ date }: { date: string | number | Date | n
     </div>
   )
 }
+
+export default LeadingTile;
