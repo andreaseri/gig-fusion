@@ -24,7 +24,7 @@ function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
             className="chip hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label={`Filter entfernen ${c.facet} ${c.value}`}
           >
-            <strong className="mr-2 text-xs text-gray-700 dark:text-gray-200">{(() => {
+            <strong className="mr-2 text-xs text-gray-500 dark:text-gray-500">{(() => {
               switch (c.facet) {
                 case 'location': return 'Ort'
                 case 'band': return 'Band'
@@ -59,7 +59,7 @@ function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
         ))}
       </div>
       <div className="ml-auto">
-        <button onClick={onClear} className="text-sm text-gray-600 dark:text-gray-300">Alle löschen</button>
+        <button onClick={onClear} className="text-sm text-gray-500 dark:text-gray-500">Alle löschen</button>
       </div>
     </div>
   )
