@@ -1,6 +1,5 @@
-import React from 'react'
 
-export default function InfoTile({ band, location, price_eur, status_kind }: { band?: string; location?: string; price_eur?: number | string; status_kind?: string }) {
+function InfoTile({ band, location, price_eur, status_kind }: { band?: string; location?: string; price_eur?: number | string; status_kind?: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', width: '100%', height: 64 }}>
       <div style={{ flex: 1, overflow: 'hidden' }}>
@@ -12,3 +11,5 @@ export default function InfoTile({ band, location, price_eur, status_kind }: { b
     </div>
   )
 }
+
+export default InfoTile;

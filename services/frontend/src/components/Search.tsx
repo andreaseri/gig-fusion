@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import FacetPanel, { SelectedFacets } from './FacetPanel'
+// import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+import FacetPanel, { type SelectedFacets } from './FacetPanel'
 import LeadingTile from './LeadingTile'
 import InfoTile from './InfoTile'
 import AppliedFiltersBar from './AppliedFiltersBar'
@@ -15,21 +16,22 @@ function JsonBlock({ data }: { data: any }) {
   )
 }
 
-export default function Search(): JSX.Element {
+function Search() {
   const [q, setQ] = useState<string>('')
-  const [limit, setLimit] = useState<number>(1000)
+  // const [limit, setLimit] = useState<number>(1000)
+  const [limit] = useState<number>(1000)
   const [res, setRes] = useState<SearchResult | null>(null)
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const emptySelected = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
   const [selected, setSelected] = useState<SelectedFacets>(emptySelected)
-  const rootRef = useRef<HTMLDivElement | null>(null)
+  // const rootRef = useRef<HTMLDivElement | null>(null)
   const [facetsResetKey, setFacetsResetKey] = useState<number>(0)
   const [rawExpanded, setRawExpanded] = useState<boolean>(false)
 
   async function doSearch(overrides?: SelectedFacets, limitOverride?: number) {
     setError(null)
-    setLoading(true)
+    // setLoading(true)
     setRes(null)
     try {
       const metaEnv = (import.meta as any).env || {}
@@ -37,17 +39,19 @@ export default function Search(): JSX.Element {
       const useSel = overrides ?? selected
       const filter = buildFilter(useSel)
       const useLimit = typeof limitOverride === 'number' ? limitOverride : limit
-  const weekdayParam = (useSel.weekday && useSel.weekday.length) ? `&weekday=${encodeURIComponent(useSel.weekday.join(','))}` : ''
-  const url = `${base}/search?q=${encodeURIComponent(q)}&limit=${useLimit}${filter ? `&filter=${encodeURIComponent(filter)}` : ''}${weekdayParam}`
+      const weekdayParam = (useSel.weekday && useSel.weekday.length) ? `&weekday=${encodeURIComponent(useSel.weekday.join(','))}` : ''
+      const url = `${base}/search?q=${encodeURIComponent(q)}&limit=${useLimit}${filter ? `&filter=${encodeURIComponent(filter)}` : ''}${weekdayParam}`
       const r = await fetch(url)
       const j = await r.json()
       setRes(j)
     } catch (err: any) {
       setError(err?.message || String(err))
     } finally {
-      setLoading(false)
+      // setLoading(false)
     }
   }
+
+ 
 
   // Run an initial search when the component mounts
   useEffect(() => {
@@ -113,20 +117,20 @@ export default function Search(): JSX.Element {
     return parts.join(' AND ')
   }
 
-  function formatDate(val: any): string {
-    if (!val) return ''
-    const asDate = new Date(val)
-    if (!isNaN(asDate.getTime())) {
-      const dd = String(asDate.getDate()).padStart(2, '0')
-      const mm = String(asDate.getMonth() + 1).padStart(2, '0')
-      const yyyy = asDate.getFullYear()
-      return `${dd}.${mm}.${yyyy}`
-    }
-    // fallback for strings like YYYY-MM-DD
-    const m = String(val).match(/(\d{4})-(\d{2})-(\d{2})/)
-    if (m) return `${m[3]}.${m[2]}.${m[1]}`
-    return String(val)
-  }
+  // function formatDate(val: any): string {
+  //   if (!val) return ''
+  //   const asDate = new Date(val)
+  //   if (!isNaN(asDate.getTime())) {
+  //     const dd = String(asDate.getDate()).padStart(2, '0')
+  //     const mm = String(asDate.getMonth() + 1).padStart(2, '0')
+  //     const yyyy = asDate.getFullYear()
+  //     return `${dd}.${mm}.${yyyy}`
+  //   }
+  //   // fallback for strings like YYYY-MM-DD
+  //   const m = String(val).match(/(\d{4})-(\d{2})-(\d{2})/)
+  //   if (m) return `${m[3]}.${m[2]}.${m[1]}`
+  //   return String(val)
+  // }
 
   function onToggle(facetName: keyof SelectedFacets, value: string) {
     const current = selected[facetName]
@@ -276,3 +280,5 @@ export default function Search(): JSX.Element {
     </div>
   )
 }
+
+ export default Search;

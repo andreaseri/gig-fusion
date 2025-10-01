@@ -1,4 +1,3 @@
-import React from 'react'
 import type { SelectedFacets } from './FacetPanel'
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
   onClear: () => void
 }
 
-export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
+function AppliedFiltersBar({ selected, onRemove, onClear }: Props) {
   const chips: Array<{ facet: keyof SelectedFacets; value: string }> = []
   Object.entries(selected).forEach(([facet, values]) => {
     ;(values as string[]).forEach(v => chips.push({ facet: facet as keyof SelectedFacets, value: v }))
@@ -65,3 +64,5 @@ export default function AppliedFiltersBar({ selected, onRemove, onClear }: Props
     </div>
   )
 }
+
+export default AppliedFiltersBar;

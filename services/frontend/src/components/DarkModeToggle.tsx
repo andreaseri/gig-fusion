@@ -1,7 +1,6 @@
-import React from 'react'
 import useDarkMode from '../hooks/useDarkMode'
 
-export default function DarkModeToggle() {
+function DarkModeToggle() {
   const { isDark, setIsDark } = useDarkMode()
   return (
     <button
@@ -15,3 +14,5 @@ export default function DarkModeToggle() {
     </button>
   )
 }
+
+export default DarkModeToggle;

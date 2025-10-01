@@ -1,4 +1,3 @@
-import React from 'react'
 
 function displayStatusLabel(status?: string) {
   if (!status) return ''
@@ -6,7 +5,7 @@ function displayStatusLabel(status?: string) {
   return status.charAt(0).toUpperCase() + status.slice(1)
 }
 
-export default function StatusTile({ status }: { status?: string }) {
+function StatusTile({ status }: { status?: string }) {
   const label = displayStatusLabel(status)
   return (
     <div style={{ width: 28, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -30,3 +29,5 @@ export default function StatusTile({ status }: { status?: string }) {
     </div>
   )
 }
+
+export default StatusTile;
