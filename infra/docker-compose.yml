@@ -26,9 +26,7 @@ services:
       - MEILI_URL=http://meilisearch:7700
       - MEILI_API_KEY=${MEILI_MASTER_KEY:-masterKey}
     depends_on:
-      # - meilisearch
-      # - scraper
-      - reindex
+      - seed
     networks:
       - gigfusion
 
@@ -48,7 +46,7 @@ services:
     networks:
       - gigfusion
 
-  scraper:
+  seed:
     build: 
       context: ./services/scraper
       dockerfile: Dockerfile
