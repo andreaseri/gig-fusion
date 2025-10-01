@@ -195,6 +195,9 @@ def fetch_events() -> List[dict]:
             section = line[:-1].strip()
             continue
 
+        if section == "Underdog Shows":
+            continue
+        
         m = event_re.match(line)
         if not m:
             continue
