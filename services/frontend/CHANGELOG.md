@@ -1,3 +1,10 @@
+# [1.0.0-rc.2](https://github.com/andreaseri/gig-fusion/compare/frontend@1.0.0-rc.1...frontend@1.0.0-rc.2) (2025-10-02)
+
+
+### Bug Fixes
+
+* **frontend:** update versions ([0727f8b](https://github.com/andreaseri/gig-fusion/commit/0727f8b6432e9f10bb17e5e79b8b6761f919e205))
+
 # 1.0.0-rc.1 (2025-10-02)
 
 
