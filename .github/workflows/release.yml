@@ -90,9 +90,10 @@ jobs:
         run: |
           cd services/frontend
           npx semantic-release
-          VERSION=$(node -p "require('./package.json').version")
+          VERSION_SPACES=$(npx semantic-release --dryRun | grep -oP 'Published release \K.*? ')
+          VERSION="${VERSION_SPACES// /}"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-
+        # VERSION=$(node -p "require('./package.json').version")
       # ---- Python (Poetry + python-semantic-release) ----
       - name: Set up Python
         if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
