@@ -20,10 +20,8 @@ commit_parser = "conventional-monorepo"
 tag_format = "scraper@{version}"
 upload_to_pypi = false
 upload_to_release = false
-# version_toml = [
-#   { file = "services/scraper/pyproject.toml", section = "tool.poetry", key = "version" }
-# ]
 version_toml = ["pyproject.toml:tool.poetry,project.version"]
+vcs_release = false
 
 [tool.semantic_release.branches.main]
 match = "main"
