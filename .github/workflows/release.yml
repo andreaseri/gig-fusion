@@ -90,8 +90,7 @@ jobs:
         run: |
           cd services/frontend
           npx semantic-release
-          VERSION_SPACES=$(npx semantic-release --dryRun | grep -oP 'Published release \K.*? ')
-          VERSION="${VERSION_SPACES// /}"
+          VERSION=$(git describe --tags --match "frontend@[0-9]*" --abbrev=0 | cut -d@ -f2)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
         # VERSION=$(node -p "require('./package.json').version")
       # ---- Python (Poetry + python-semantic-release) ----
