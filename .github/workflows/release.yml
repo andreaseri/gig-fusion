@@ -23,13 +23,28 @@ jobs:
         run: |
           SERVS="backend frontend scraper"
           CHANGED=()
-          DIFF=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+
+          # Make sure we have full history and refs from origin
+          git fetch --unshallow || true
+          git fetch origin main
+
+          BEFORE=$(git log $(git merge-base origin/main HEAD)..HEAD --reverse --format="%H" | head -n1)
+          AFTER=${{ github.sha }}
+          DIFF=$(git diff --name-only "$BEFORE" "$AFTER")
+          
+          echo "BEFORE=$BEFORE"
+          echo "AFTER=$AFTER"
+          echo "Changed files:"
+          echo "$DIFF"
+          
           for s in $SERVS; do
-            if echo "$DIFF" | grep -q "^${s}/"; then
+            if echo "$DIFF" | grep -q "^services/${s}/"; then
               CHANGED+=("\"$s\"")
             fi
           done
+
           SERVICES=$(printf "%s\n" "${CHANGED[@]}" | sort -u | paste -sd "," -)
+          echo "Detected changed services: [$SERVICES]"
           echo "services=[$SERVICES]" >> $GITHUB_OUTPUT
 
   release-and-build:
@@ -38,6 +53,7 @@ jobs:
     needs: detect-changed
     if: ${{ needs.detect-changed.outputs.services != '[]' }}
     strategy:
+      max-parallel: 1
       matrix:
         service: ${{ fromJson(needs.detect-changed.outputs.services) }}
     steps:
@@ -51,6 +67,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.x"
+
+      - name: Install frontend dependencies
+        if: ${{ matrix.service == 'frontend' }}
+        run: |
+          cd services/frontend
+          npm ci   # or npm install
 
       - name: Run Node semantic-release
         if: ${{ matrix.service == 'frontend' }}
@@ -71,15 +93,19 @@ jobs:
       - name: Install Poetry + python-semantic-release
         if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
         run: |
-          pip install poetry python-semantic-release
+          pip install poetry "python-semantic-release==10.4.1"
 
       - name: Run Python semantic-release
         if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
         id: semrel-py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd services/${{ matrix.service }}
-          semantic-release publish
-          VERSION=$(semantic-release print-version)
+          semantic-release version --no-vcs-release
+          VERSION=$(semantic-release version --print)
+          # semantic-release --config=services/${{ matrix.service }}/pyproject.toml version --no-vcs-release
+          # VERSION=$(semantic-release  --config=services/${{ matrix.service }}/pyproject.toml version --print)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       # --- Common Docker build ---
@@ -109,4 +135,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository_owner }}/gigfusion-${{ matrix.service }}:${{ env.VERSION }}
-            ghcr.io/${{ github.repository_owner }}/gigfusion-${{ matrix.service }}:latest
+            # ghcr.io/${{ github.repository_owner }}/gigfusion-${{ matrix.service }}:latest
+            ${{ github.ref == 'refs/heads/main' && format('ghcr.io/{0}/gigfusion-{1}:latest', github.repository_owner, matrix.service) || '' }}
