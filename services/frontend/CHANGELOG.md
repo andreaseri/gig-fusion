@@ -1,3 +1,10 @@
+# [1.0.0-rc.4](https://github.com/andreaseri/gig-fusion/compare/frontend@1.0.0-rc.3...frontend@1.0.0-rc.4) (2025-10-02)
+
+
+### Bug Fixes
+
+* **frontend:** use tag version for artifacts ([4f6be06](https://github.com/andreaseri/gig-fusion/commit/4f6be0682765c8847292652c9f83bf7667ff1d18))
+
 # [1.0.0-rc.3](https://github.com/andreaseri/gig-fusion/compare/frontend@1.0.0-rc.2...frontend@1.0.0-rc.3) (2025-10-02)
 
 
