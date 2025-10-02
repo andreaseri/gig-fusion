@@ -61,6 +61,14 @@ jobs:
         with:
           fetch-depth: 0  # important for semantic-release to read commits
 
+      - name: Sync with latest branch state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin ${{ github.ref_name }}
+          git checkout ${{ github.ref_name }}
+          git pull --rebase origin ${{ github.ref_name }}
+
       # ---- Frontend (Node.js semantic-release) ----
       - name: Set up Node.js
         if: ${{ matrix.service == 'frontend' }}
@@ -77,6 +85,8 @@ jobs:
       - name: Run Node semantic-release
         if: ${{ matrix.service == 'frontend' }}
         id: semrel-node
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd services/frontend
           npx semantic-release
