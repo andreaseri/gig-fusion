@@ -69,6 +69,8 @@ function Search() {
       ;(async () => {
         // If the query is empty, treat this as a reset: clear selected
         // facets and reset the facet panel view state, then fetch initial data.
+        await doSearch()
+        return
         if (q.trim() === '') {
           setSelected(emptySelected)
           setFacetsResetKey(k => k + 1)
@@ -154,10 +156,10 @@ function Search() {
           selected={selected}
           onToggle={onToggle}
           onClear={() => {
-            const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
-            setSelected(empty)
+            // const empty = { location: [], band: [], status_kind: [], weekday: [] } as SelectedFacets
+            setSelected(emptySelected)
             setFacetsResetKey(k => k + 1)
-            void doSearch(empty)
+            void doSearch(emptySelected)
           }}
           resetKey={facetsResetKey}
         />
@@ -166,6 +168,8 @@ function Search() {
           <form
             onSubmit={(e) => {
               e.preventDefault()
+              void doSearch()
+              return;
               if (q.trim() === '') {
                 setSelected(emptySelected)
                 setFacetsResetKey(k => k + 1)
@@ -189,12 +193,14 @@ function Search() {
                   type="button"
                   onClick={() => {
                     setQ('')
+                    void doSearch()
+                    return
                     setSelected(emptySelected)
                     setFacetsResetKey(k => k + 1)
                     void doSearch(emptySelected)
                   }}
                   aria-label="Clear search"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
                   ×
                 </button>
