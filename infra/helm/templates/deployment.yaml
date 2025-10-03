@@ -35,7 +35,10 @@ spec:
             - name: MEILI_API_KEY
               value: "{{ .Values.meili.masterKey }}"
 {{- end }}
-          resources: {{ toYaml .Values.resources | indent 10 }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -61,7 +64,10 @@ spec:
           imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.frontend.targetPort }}
-          resources: {{ toYaml .Values.resources | indent 12 }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -98,6 +104,10 @@ spec:
 {{- else }}
               value: "{{ .Values.meili.masterKey }}"
 {{- end }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
           volumeMounts:
             - name: data
               mountPath: /data.ms
@@ -107,10 +117,11 @@ spec:
           persistentVolumeClaim:
             claimName: {{ include "gigfusion.fullname" . }}-meili-pvc
 {{- else }}
-          emptyDir: {}
+          emptyDir:
+            sizeLimit: "{{ .Values.meili.persistence.size }}"
 {{- end }}
----
 {{- if .Values.meili.persistence.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

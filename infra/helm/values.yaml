@@ -64,7 +64,14 @@ scraper:
   schedule: "0 3 * * *"    # runs daily at 03:00
   imagePullPolicy: IfNotPresent
 
-resources: {}
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
