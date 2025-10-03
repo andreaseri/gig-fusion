@@ -1,3 +1,10 @@
+# [1.0.0-rc.5](https://github.com/andreaseri/gig-fusion/compare/frontend@1.0.0-rc.4...frontend@1.0.0-rc.5) (2025-10-03)
+
+
+### Bug Fixes
+
+* **frontend:** search behaviour improvement ([f6c5c7e](https://github.com/andreaseri/gig-fusion/commit/f6c5c7ea6acf695535e058c567422156ac02a1f8))
+
 # [1.0.0-rc.4](https://github.com/andreaseri/gig-fusion/compare/frontend@1.0.0-rc.3...frontend@1.0.0-rc.4) (2025-10-02)
 
 
