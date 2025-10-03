@@ -23,8 +23,10 @@ spec:
           ports:
             - containerPort: {{ .Values.service.backend.targetPort }}
           env:
-            - name: CORS_ALLOW_ORIGINS
-              value: {{ printf "https://%s:%d" ((first .Values.ingress.frontendHosts).host) (.Values.service.backend.port | int) | quote }}
+            {{- range .Values.deployment.backend.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
             - name: MEILI_URL
               value: "{{ .Values.meili.url }}"
 {{- if .Values.meili.createSecret }}

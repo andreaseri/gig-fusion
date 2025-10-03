@@ -27,7 +27,7 @@ image:
 service:
   backend:
     port: 80
-    targetPort: 8080
+    targetPort: 8000
     type: ClusterIP
   frontend:
     port: 80
@@ -37,6 +37,12 @@ service:
     port: 7700
     targetPort: 7700
     type: ClusterIP
+
+deployment:
+  backend:
+    env:
+      - name: CORS_ALLOW_ORIGINS
+        value: "https://gigfusion.de"
 
 ingress:
   className: traefik
