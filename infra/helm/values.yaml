@@ -42,18 +42,18 @@ ingress:
   className: traefik
   certIssuer: letsencrypt-staging
   frontendHosts:
-    - host: gigfusion.org
-      tlsSecret: gigfusion-tls
+    # - host: gigfusion.org
+    #   tlsSecret: gigfusion-tls
     - host: gigfusion.de
       tlsSecret: gigfusion-tls
   backendHosts:
-    - host: api.gigfusion.org
-      tlsSecret: gigfusion-api-tls
+    # - host: api.gigfusion.org
+    #   tlsSecret: gigfusion-api-tls
     - host: api.gigfusion.de
       tlsSecret: gigfusion-api-tls
 
 meili:
-  url: http://meilisearch:7700
+  url: http://gigfusion-meilisearch:7700
   masterKey: ""            # DO NOT hardcode secrets; set via helm --set or a Kubernetes Secret and reference
   persistence:
     enabled: false

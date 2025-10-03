@@ -23,6 +23,8 @@ spec:
           ports:
             - containerPort: {{ .Values.service.backend.targetPort }}
           env:
+            - name: CORS_ALLOW_ORIGINS
+              value: {{ printf "https://%s:%d" ((first .Values.ingress.frontendHosts).host) (.Values.service.backend.port | int) | quote }}
             - name: MEILI_URL
               value: "{{ .Values.meili.url }}"
 {{- if .Values.meili.createSecret }}
@@ -62,6 +64,9 @@ spec:
         - name: frontend
           image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}"
           imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
+          env:
+            - name: ENVSUB_VITE_BACKEND_URL
+              value: "{{ (first .Values.ingress.backendHosts).host | printf "https://%s" }}"
           ports:
             - containerPort: {{ .Values.service.frontend.targetPort }}
 {{- with .Values.resources }}
