@@ -113,7 +113,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd services/${{ matrix.service }}
-          semantic-release version --no-vcs-release
+          semantic-release version --no-vcs-release --no-changelog
           VERSION=$(semantic-release version --print)
           # semantic-release --config=services/${{ matrix.service }}/pyproject.toml version --no-vcs-release
           # VERSION=$(semantic-release  --config=services/${{ matrix.service }}/pyproject.toml version --print)
