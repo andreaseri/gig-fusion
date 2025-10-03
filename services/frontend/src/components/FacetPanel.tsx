@@ -29,6 +29,7 @@ type FacetKeys = 'location' | 'band' | 'status_kind' | 'weekday'
 
 
 function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: FacetPanelProps) {
+  const maxVisible = 7
   // Keep last-seen counts per facet value so numbers don't jump when filters change.
   const weekdayOrder = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
   const orderIndex = (v: string) => {
@@ -41,7 +42,7 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
     status_kind: new Map(),
     weekday: new Map(),
   }))
-  const [showCounts, setShowCounts] = useState<Record<FacetKeys, number>>(() => ({ location: 10, band: 10, status_kind: 10, weekday: 10 }))
+  const [showCounts, setShowCounts] = useState<Record<FacetKeys, number>>(() => ({ location: maxVisible, band: maxVisible, status_kind: maxVisible, weekday: maxVisible }))
 
   useEffect(() => {
     setSeenCounts(prev => {
@@ -65,7 +66,7 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
 
   // reset view state when parent requests it (e.g. Clear from search bar)
   useEffect(() => {
-    setShowCounts({ location: 10, band: 10, status_kind: 10, weekday: 10 })
+    setShowCounts({ location: maxVisible, band: maxVisible, status_kind: maxVisible, weekday: maxVisible })
   }, [resetKey])
 
   function renderList(key: FacetKeys) {
@@ -138,13 +139,13 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
   }
 
   return (
-    <aside className="flex-none" style={{ width: 260, paddingRight: 12 }}>
+    <aside className="flex-none" style={{ width: 280, paddingRight: 12 }}>
       <div style={{ marginBottom: 12 }}>
         <strong>Filter</strong>
         <div style={{ marginTop: 6 }}>
           <button
             onClick={() => {
-              setShowCounts({ location: 10, band: 10, status_kind: 10, weekday: 10 })
+              setShowCounts({ location: maxVisible, band: maxVisible, status_kind: maxVisible, weekday: maxVisible })
               onClear()
             }}
             style={{ fontSize: 12 }}
@@ -168,10 +169,11 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
             <input type="checkbox" checked={selected.location.includes(v.value)} onChange={() => onToggle('location', v.value)} /> {v.value} <small>({v.count})</small>
           </label>
         ))}
-        {renderList('location').length > 10 && (
+        {renderList('location').length > maxVisible && (
           <div>
-            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, location: prev.location === 10 ? renderList('location').length : 10 }))}>
-              {showCounts.location === 10 ? 'Mehr anzeigen' : 'Weniger anzeigen'}
+            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, location: prev.location === maxVisible ? renderList('location').length : maxVisible }))}
+            >
+              {showCounts.location === maxVisible ? 'Mehr anzeigen' : 'Weniger anzeigen'}
             </button>
           </div>
         )}
@@ -191,10 +193,10 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
             <input type="checkbox" checked={selected.band.includes(v.value)} onChange={() => onToggle('band', v.value)} /> {v.value} <small>({v.count})</small>
           </label>
         ))}
-        {renderList('band').length > 10 && (
+        {renderList('band').length > maxVisible && (
           <div>
-            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, band: prev.band === 10 ? renderList('band').length : 10 }))}>
-              {showCounts.band === 10 ? 'Mehr anzeigen' : 'Weniger anzeigen'}
+            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, band: prev.band === maxVisible ? renderList('band').length : maxVisible }))}>
+              {showCounts.band === maxVisible ? 'Mehr anzeigen' : 'Weniger anzeigen'}
             </button>
           </div>
         )}
@@ -234,10 +236,10 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
             </label>
           )
         })}
-        {renderList('weekday').length > 10 && (
+        {renderList('weekday').length > maxVisible && (
           <div>
-            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, weekday: prev.weekday === 10 ? renderList('weekday').length : 10 }))}>
-              {showCounts.weekday === 10 ? 'Mehr anzeigen' : 'Weniger anzeigen'}
+            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, weekday: prev.weekday === maxVisible ? renderList('weekday').length : maxVisible }))}>
+              {showCounts.weekday === maxVisible ? 'Mehr anzeigen' : 'Weniger anzeigen'}
             </button>
           </div>
         )}
@@ -257,10 +259,10 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
             <input type="checkbox" checked={selected.status_kind.includes(v.value)} onChange={() => onToggle('status_kind', v.value)} /> {v.value} <small>({v.count})</small>
           </label>
         ))}
-        {renderList('status_kind').length > 10 && (
+        {renderList('status_kind').length > maxVisible && (
           <div>
-            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, status_kind: prev.status_kind === 10 ? renderList('status_kind').length : 10 }))}>
-              {showCounts.status_kind === 10 ? 'Mehr anzeigen' : 'Weniger anzeigen'}
+            <button style={{ fontSize: 12 }} onClick={() => setShowCounts(prev => ({ ...prev, status_kind: prev.status_kind === maxVisible ? renderList('status_kind').length : maxVisible }))}>
+              {showCounts.status_kind === maxVisible ? 'Mehr anzeigen' : 'Weniger anzeigen'}
             </button>
           </div>
         )}

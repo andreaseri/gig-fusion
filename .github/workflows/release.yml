@@ -1,0 +1,149 @@
+name: Monorepo Release & Multi-Arch Build
+
+on:
+  push:
+    branches:
+      - main
+      - feat/github-actions  # for testing
+
+permissions:
+  contents: write      # needed for pushing tags & changelogs
+  packages: write      # needed for GHCR
+
+jobs:
+  detect-changed:
+    name: Detect changed services
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.set.outputs.services }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: set
+        run: |
+          SERVS="backend frontend scraper"
+          CHANGED=()
+
+          # Make sure we have full history and refs from origin
+          git fetch --unshallow || true
+          git fetch origin main
+
+          BEFORE=$(git log $(git merge-base origin/main HEAD)..HEAD --reverse --format="%H" | head -n1)
+          AFTER=${{ github.sha }}
+          DIFF=$(git diff --name-only "$BEFORE" "$AFTER")
+          
+          echo "BEFORE=$BEFORE"
+          echo "AFTER=$AFTER"
+          echo "Changed files:"
+          echo "$DIFF"
+          
+          for s in $SERVS; do
+            if echo "$DIFF" | grep -q "^services/${s}/"; then
+              CHANGED+=("\"$s\"")
+            fi
+          done
+
+          SERVICES=$(printf "%s\n" "${CHANGED[@]}" | sort -u | paste -sd "," -)
+          echo "Detected changed services: [$SERVICES]"
+          echo "services=[$SERVICES]" >> $GITHUB_OUTPUT
+
+  release-and-build:
+    name: Release & Build Changed Services
+    runs-on: ubuntu-latest
+    needs: detect-changed
+    if: ${{ needs.detect-changed.outputs.services != '[]' }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        service: ${{ fromJson(needs.detect-changed.outputs.services) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # important for semantic-release to read commits
+
+      - name: Sync with latest branch state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin ${{ github.ref_name }}
+          git checkout ${{ github.ref_name }}
+          git pull --rebase origin ${{ github.ref_name }}
+
+      # ---- Frontend (Node.js semantic-release) ----
+      - name: Set up Node.js
+        if: ${{ matrix.service == 'frontend' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install frontend dependencies
+        if: ${{ matrix.service == 'frontend' }}
+        run: |
+          cd services/frontend
+          npm ci   # or npm install
+
+      - name: Run Node semantic-release
+        if: ${{ matrix.service == 'frontend' }}
+        id: semrel-node
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd services/frontend
+          npx semantic-release
+          VERSION=$(git describe --tags --match "frontend@[0-9]*" --abbrev=0 | cut -d@ -f2)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        # VERSION=$(node -p "require('./package.json').version")
+      # ---- Python (Poetry + python-semantic-release) ----
+      - name: Set up Python
+        if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Poetry + python-semantic-release
+        if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
+        run: |
+          pip install poetry "python-semantic-release==10.4.1"
+
+      - name: Run Python semantic-release
+        if: ${{ matrix.service == 'backend' || matrix.service == 'scraper' }}
+        id: semrel-py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd services/${{ matrix.service }}
+          semantic-release version --no-vcs-release
+          VERSION=$(semantic-release version --print)
+          # semantic-release --config=services/${{ matrix.service }}/pyproject.toml version --no-vcs-release
+          # VERSION=$(semantic-release  --config=services/${{ matrix.service }}/pyproject.toml version --print)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      # --- Common Docker build ---
+      - name: Set version env
+        run: |
+          echo "VERSION=${{ steps.semrel-node.outputs.VERSION || steps.semrel-py.outputs.VERSION }}" >> $GITHUB_ENV
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push multi-arch image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/${{ matrix.service }}
+          file: ./services/${{ matrix.service }}/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/gigfusion-${{ matrix.service }}:${{ env.VERSION }}
+            ${{ github.ref == 'refs/heads/main' && format('ghcr.io/{0}/gigfusion-{1}:latest', github.repository_owner, matrix.service) || '' }}
+          # ghcr.io/${{ github.repository_owner }}/gigfusion-${{ matrix.service }}:latest

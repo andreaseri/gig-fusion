@@ -4,7 +4,7 @@
   --bg: #f7fafc;
   --card: #ffffff;
   --border: #e5e7eb; /* tailwind gray-200 */
-  --chip: #f3f4f6; /* tailwind gray-100 */
+  --chip: #e5e8ee; /* tailwind gray-100 */
   --muted: #6b7280;
   --primary: #0a66c2;
   --text: #0f172a;
@@ -14,7 +14,7 @@
   --bg: #0b1220;
   --card: #071024;
   --border: #374151; /* tailwind gray-700 */
-  --chip: #1f2937; /* tailwind gray-800 */
+  --chip: #313b4a; /* tailwind gray-800 */
   --muted: #dfe3e9;
   --primary: #2b8bf6;
   --text: #e6eef8;
