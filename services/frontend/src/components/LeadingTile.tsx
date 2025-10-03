@@ -35,7 +35,7 @@ function LeadingTile({ date }: { date: string | number | Date | null | undefined
         minWidth: 64,
         height: 64,
         borderRadius: 8,
-        background: '#f0f4ff',
+        background: '#d2d7e5ff',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

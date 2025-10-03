@@ -138,7 +138,7 @@ function FacetPanel({ distribution, selected, onToggle, onClear, resetKey }: Fac
   }
 
   return (
-    <aside className="flex-none" style={{ width: 260, paddingRight: 12 }}>
+    <aside className="flex-none" style={{ width: 280, paddingRight: 12 }}>
       <div style={{ marginBottom: 12 }}>
         <strong>Filter</strong>
         <div style={{ marginTop: 6 }}>
