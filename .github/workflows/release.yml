@@ -28,7 +28,8 @@ jobs:
           git fetch --unshallow || true
           git fetch origin main
 
-          BEFORE=$(git log $(git merge-base origin/main HEAD)..HEAD --reverse --format="%H" | head -n1)
+          # BEFORE=$(git log $(git merge-base origin/main HEAD)..HEAD --reverse --format="%H" | head -n1)
+          BEFORE=${{ github.event.before }}
           AFTER=${{ github.sha }}
           DIFF=$(git diff --name-only "$BEFORE" "$AFTER")
           
