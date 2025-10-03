@@ -1,9 +1,70 @@
-replicaCount: 1
+replicaCount:
+  backend: 2
+  frontend: 2
+
+serviceAccount:
+  create: true
+  name: ""
 
 image:
-  repository: yourrepo/backend
-  tag: latest
+  backend:
+    repository: ghcr.io/andreaseri/gigfusion-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  frontend:
+    repository: ghcr.io/andreaseri/gigfusion-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  scraper:
+    repository: ghcr.io/andreaseri/gigfusion-scraper
+    tag: latest
+    pullPolicy: IfNotPresent
+  meilisearch:
+    repository: getmeili/meilisearch
+    tag: latest
+    pullPolicy: IfNotPresent
 
-meilisearch:
+service:
+  backend:
+    port: 80
+    targetPort: 8080
+    type: ClusterIP
+  frontend:
+    port: 80
+    targetPort: 80
+    type: ClusterIP
+  meilisearch:
+    port: 7700
+    targetPort: 7700
+    type: ClusterIP
+
+ingress:
+  className: traefik
+  certIssuer: letsencrypt-staging
+  frontendHosts:
+    - host: gigfusion.org
+      tlsSecret: gigfusion-tls
+    - host: gigfusion.de
+      tlsSecret: gigfusion-tls
+  backendHosts:
+    - host: api.gigfusion.org
+      tlsSecret: gigfusion-api-tls
+    - host: api.gigfusion.de
+      tlsSecret: gigfusion-api-tls
+
+meili:
   url: http://meilisearch:7700
-  apiKey: ""
+  masterKey: ""            # DO NOT hardcode secrets; set via helm --set or a Kubernetes Secret and reference
+  persistence:
+    enabled: false
+    storageClass: ""
+    size: 1Gi
+
+scraper:
+  schedule: "0 3 * * *"    # runs daily at 03:00
+  imagePullPolicy: IfNotPresent
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}

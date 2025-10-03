@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-frontend
+  namespace: {{ include "gigfusion.namespace" . }}
+  annotations:
+    kubernetes.io/ingress.class: "{{ .Values.ingress.className }}"
+    cert-manager.io/cluster-issuer: "{{ .Values.ingress.certIssuer }}"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: "{{ .Values.ingress.className }}"
+  tls:
+{{- range .Values.ingress.frontendHosts }}
+    - hosts:
+        - {{ .host | quote }}
+      secretName: {{ .tlsSecret | quote }}
+{{- end }}
+  rules:
+{{- range .Values.ingress.frontendHosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "gigfusion.fullname" $ }}-frontend
+                port:
+                  number: {{ $.Values.service.frontend.port }}
+{{- end }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-backend
+  namespace: {{ include "gigfusion.namespace" . }}
+  annotations:
+    kubernetes.io/ingress.class: "{{ .Values.ingress.className }}"
+    cert-manager.io/cluster-issuer: "{{ .Values.ingress.certIssuer }}"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: "{{ .Values.ingress.className }}"
+  tls:
+{{- range .Values.ingress.backendHosts }}
+    - hosts:
+        - {{ .host | quote }}
+      secretName: {{ .tlsSecret | quote }}
+{{- end }}
+  rules:
+{{- range .Values.ingress.backendHosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "gigfusion.fullname" $ }}-backend
+                port:
+                  number: {{ $.Values.service.backend.port }}
+{{- end }}
