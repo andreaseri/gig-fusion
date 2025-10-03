@@ -1,0 +1,142 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-backend
+  namespace: {{ include "gigfusion.namespace" . }}
+  labels:
+    app: backend
+spec:
+  replicas: {{ .Values.replicaCount.backend }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      serviceAccountName: {{ include "gigfusion.serviceAccountName" . }}
+      containers:
+        - name: backend
+          image: "{{ .Values.image.backend.repository }}:{{ .Values.image.backend.tag }}"
+          imagePullPolicy: {{ .Values.image.backend.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.backend.targetPort }}
+          env:
+            - name: CORS_ALLOW_ORIGINS
+              value: {{ printf "https://%s:%d" ((first .Values.ingress.frontendHosts).host) (.Values.service.backend.port | int) | quote }}
+            - name: MEILI_URL
+              value: "{{ .Values.meili.url }}"
+{{- if .Values.meili.createSecret }}
+            - name: MEILI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gigfusion.fullname" . }}-meili
+                  key: masterKey
+{{- else }}
+            - name: MEILI_API_KEY
+              value: "{{ .Values.meili.masterKey }}"
+{{- end }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-frontend
+  namespace: {{ include "gigfusion.namespace" . }}
+  labels:
+    app: frontend
+spec:
+  replicas: {{ .Values.replicaCount.frontend }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      serviceAccountName: {{ include "gigfusion.serviceAccountName" . }}
+      containers:
+        - name: frontend
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}"
+          imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
+          env:
+            - name: ENVSUB_VITE_BACKEND_URL
+              value: "{{ (first .Values.ingress.backendHosts).host | printf "https://%s" }}"
+          ports:
+            - containerPort: {{ .Values.service.frontend.targetPort }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-meilisearch
+  namespace: {{ include "gigfusion.namespace" . }}
+  labels:
+    app: meilisearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meilisearch
+  template:
+    metadata:
+      labels:
+        app: meilisearch
+    spec:
+      serviceAccountName: {{ include "gigfusion.serviceAccountName" . }}
+      containers:
+        - name: meilisearch
+          image: "{{ .Values.image.meilisearch.repository }}:{{ .Values.image.meilisearch.tag }}"
+          imagePullPolicy: {{ .Values.image.meilisearch.pullPolicy }}
+          args: ["meilisearch", "--db-path", "/data.ms", "--http-addr", "0.0.0.0:7700"]
+          ports:
+            - containerPort: {{ .Values.service.meilisearch.targetPort }}
+          env:
+            - name: MEILI_MASTER_KEY
+{{- if .Values.meili.createSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gigfusion.fullname" . }}-meili
+                  key: masterKey
+{{- else }}
+              value: "{{ .Values.meili.masterKey }}"
+{{- end }}
+{{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+{{- end }}
+          volumeMounts:
+            - name: data
+              mountPath: /data.ms
+      volumes:
+        - name: data
+{{- if .Values.meili.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "gigfusion.fullname" . }}-meili-pvc
+{{- else }}
+          emptyDir:
+            sizeLimit: "{{ .Values.meili.persistence.size }}"
+{{- end }}
+{{- if .Values.meili.persistence.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-meili-pvc
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: {{ .Values.meili.persistence.size }}
+  {{- if .Values.meili.persistence.storageClass }}
+  storageClassName: "{{ .Values.meili.persistence.storageClass }}"
+  {{- end }}
+{{- end }}
