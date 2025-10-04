@@ -12,6 +12,7 @@ spec:
         metadata:
           labels:
             app: scraper
+            app.kubernetes.io/revision: {{ .Release.Revision | quote }}
         spec:
           serviceAccountName: {{ include "gigfusion.serviceAccountName" . }}
           restartPolicy: OnFailure

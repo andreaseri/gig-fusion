@@ -5,6 +5,7 @@ metadata:
   namespace: {{ include "gigfusion.namespace" . }}
   labels:
     app: meilisearch
+    app.kubernetes.io/revision: {{ .Release.Revision | quote }}
 spec:
   type: {{ .Values.service.meilisearch.type }}
   selector:
@@ -22,6 +23,7 @@ metadata:
   namespace: {{ include "gigfusion.namespace" . }}
   labels:
     app: frontend
+    app.kubernetes.io/revision: {{ .Release.Revision | quote }}
 spec:
   type: {{ .Values.service.frontend.type }}
   selector:
@@ -39,6 +41,7 @@ metadata:
   namespace: {{ include "gigfusion.namespace" . }}
   labels:
     app: backend
+    app.kubernetes.io/revision: {{ .Release.Revision | quote }}
 spec:
   type: {{ .Values.service.backend.type }}
   selector:

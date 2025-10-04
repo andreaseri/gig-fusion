@@ -43,18 +43,30 @@ deployment:
     env:
       - name: CORS_ALLOW_ORIGINS
         value: "https://gigfusion.de"
+    args:
+      - api.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      # - --log-level
+      # - trace
+    command:
+       - uvicorn
+  frontend:
+    env:
+      - name: ENVSUB_VITE_BACKEND_URL
+        value: "https://api.gigfusion.de"
+    args: []
+    command: []
 
 ingress:
   className: traefik
   certIssuer: letsencrypt-staging
-  frontendHosts:
-    # - host: gigfusion.org
-    #   tlsSecret: gigfusion-tls
+  frontend:
     - host: gigfusion.de
       tlsSecret: gigfusion-tls
-  backendHosts:
-    # - host: api.gigfusion.org
-    #   tlsSecret: gigfusion-api-tls
+  backend:
     - host: api.gigfusion.de
       tlsSecret: gigfusion-api-tls
 
