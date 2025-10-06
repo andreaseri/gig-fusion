@@ -163,7 +163,10 @@ def parse_status(line: str, known_locs: List[str]) -> Tuple[str, str, str]:
 
     # If status is 'verlegt' (moved), try to extract the new location from the status text
     if status_kind == "verlegt":
+        status_raw = re.sub(r"^[Vv]erlegt", "verlegt", status_raw)
         s = status_raw
+        # always start "verlegt" in lowercase
+        # remove leading "verlegt" and any following preposition/article
         for loc in sorted(known_locs, key=len, reverse=True):
             if re.search(rf"\b{re.escape(loc)}\b", s, flags=re.I):
                 new_location = loc
@@ -212,8 +215,35 @@ def fetch_events() -> List[dict]:
         location = at_loc if at_loc else (section or "")
 
         d = datetime.strptime(date + str(now.year), "%d.%m.%Y")
-        if d.date() < now.date():
-            d = d.replace(year=now.year + 1)
+
+        tmp_date = date
+        tmp_date = tmp_date.strip()
+        if tmp_date.endswith("."):
+            tmp_date = tmp_date[:-1]
+
+        e_day, e_month = map(int, tmp_date.split("."))
+        n_day, n_month = now.day, now.month
+
+        if (e_month, e_day) < (n_month, n_day):
+            # more than 3 month in the past
+            if (now - d).days > 90:
+                # future
+                if e_month > n_month or (e_month == n_month and e_day >= n_day):
+                    # increasing month, this year
+                    pass
+                else:
+                    # smaller month, assume next year
+                    d = d.replace(year=now.year + 1)
+            else:
+                # past
+                if e_month > n_month:
+                    d = d.replace(year=now.year - 1)
+                else:
+                    pass
+        else:
+            pass
+
+        # print(f"Parsed DATE: {date} -> converted to: {d.date()}")
 
         price_eur = float(price_raw.replace(",", ".")) if price_raw else None
 

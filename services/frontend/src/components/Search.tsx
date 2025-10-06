@@ -247,7 +247,7 @@ function Search() {
                             <LeadingTile date={h.date} />
                           </div>
                           <div>
-                            <InfoTile band={h.band} location={h.location} price_eur={h.price_eur} status_kind={h.status_kind} />
+                            <InfoTile band={h.band} location={h.location} price_eur={h.price_eur} status_kind={h.status_kind} status_raw={h.status_raw} />
                           </div>
                         </div>
                         <div className="hidden">

@@ -1,5 +1,5 @@
 from typing import List, Optional, Dict
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, Query
 from pydantic import BaseModel, Field
@@ -39,8 +39,15 @@ def search(
 
     opts = {"limit": limit,
             "facets": ["location", "status_kind", "price_eur", "date", "band"]}
+    
+    # Get today's date in ISO format
+    today = datetime.now(timezone.utc).date()
+    today_str = today.isoformat()
     if filter:
-        opts["filter"] = filter
+        opts["filter"] = filter + f' AND date >= "{today_str}"'
+    else:
+        opts["filter"] = f'date >= "{today_str}"'
+    
     if sort:
         opts["sort"] = sort.split(",")
 
