@@ -163,7 +163,10 @@ def parse_status(line: str, known_locs: List[str]) -> Tuple[str, str, str]:
 
     # If status is 'verlegt' (moved), try to extract the new location from the status text
     if status_kind == "verlegt":
+        status_raw = re.sub(r"^[Vv]erlegt", "verlegt", status_raw)
         s = status_raw
+        # always start "verlegt" in lowercase
+        # remove leading "verlegt" and any following preposition/article
         for loc in sorted(known_locs, key=len, reverse=True):
             if re.search(rf"\b{re.escape(loc)}\b", s, flags=re.I):
                 new_location = loc
