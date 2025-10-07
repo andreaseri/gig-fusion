@@ -1,0 +1,13 @@
+### Test /extract-events endpoint
+POST http://127.0.0.1:8000/extract-events?url=https%3A%2F%2Fwww.sonic-ballroom.de%2Findex.php%2Fkonzerte&location=Sonic%20Ballroom
+Content-Type: application/json
+
+
+### Test /extract-events endpoint with another URL
+POST http://127.0.0.1:8000/extract-events?url=https%3A%2F%2Fwww.sonic-ballroom.de%2Findex.php%2Fkonzerte%3Fccm_paging_p_b209%3D9%26ccm_order_by_b209%3Dak_termin%26ccm_order_by_direction_b209%3Dasc&location=Sonic%20Ballroom
+Content-Type: application/json
+
+
+### Test /extract-events endpoint with a different venue
+POST http://127.0.0.1:8000/extract-events?url=https%3A%2F%2Funderdogrecordstore.de%2Fvorverkauf
+Content-Type: application/json

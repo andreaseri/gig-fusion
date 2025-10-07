@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ai-scraper"
+version = "0.1.0"
+package-mode = false
+description = "A Playwright + FastAPI + OpenAI web scraping analyzer"
+authors = ["Andreas Eri <andreas@eri.io>"]
+packages = [{ include = "ai-scraper" }]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = "^0.118.0"
+uvicorn = "^0.37.0"
+playwright = "^1.55.0"
+openai = "^2.2.0"
+beautifulsoup4 = "^4.14.2"
+python-dotenv = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
