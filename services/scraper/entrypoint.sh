@@ -6,7 +6,7 @@ set -e
 # If the env vars are set in the image or via `docker run -e`, use them as defaults.
 MEILI_URL="${MEILI_URL:-}"
 MEILI_API_KEY="${MEILI_API_KEY:-}"
-DATA_PATH="/data/raw/underdog"
+DATA_PATH="${DATA_PATH:-/data/raw/underdog}"
 while [ $# -gt 0 ]; do
   case "$1" in
     --meili-url)

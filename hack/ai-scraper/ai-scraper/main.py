@@ -41,12 +41,17 @@ def extract_events_from_html(html: str, url: str, fixed_location: str = None) ->
     """Call GPT to extract structured event JSON."""
     soup = BeautifulSoup(html, "html.parser")
     text = soup.get_text(separator="\n", strip=True)
-    trimmed_text = text[:20000].strip()  # Fit within token limit
+    # Limit text length to avoid exceeding token limits
+    # try to split into chunks intelligently if needed
+    # e.g., by sections or headings
+    
+
+    trimmed_text = text[:12000].strip()  # Fit within token limit
 
     with open("debug.txt", "w", encoding="utf-8") as f:
             f.write(trimmed_text)
 
-    return {"events": [], "next": ""}
+    # return {"events": [], "next": ""}
 
     print(f"Scraped {len(trimmed_text)} characters from {url}")
 
@@ -76,11 +81,14 @@ Each event should be represented in this JSON format:
 
 Rules:
 - Always output valid JSON.
+- objective is to extract live music concerts or gig events only and provide these as structured list.
 - `band` must be a list of strings. Try to split with separators like (,/) multiple bands if mentioned.
 - `price_eur` must be a float if possible (no currency symbols).
 - Use ISO date format.
-{ f"""- `location` and `section` is always "{fixed_location}", unless explicitly stated otherwise.""" if fixed_location else """- `location` and `section` can be any venue or section mentioned near in the text.""" }
+{ f"""- `location` and `section` is always "{fixed_location}", unless explicitly stated otherwise.""" if fixed_location else """- 'Location' and 'section' can refer to any venue or section mentioned in the text, or they can be separate headlines for lists of events in those venues.""" }
 - `status_kind` can be "ausverkauft", "abgesagt", "verlegt", or default "verfügbar".
+- `genres` try to extract them from text if mentioned, otherwise empty list.
+- `members` can be empty list if not mentioned.
 - If something is missing, use an empty string.
 - Only include events that are live music concerts or gigs. 
 - Exclude any listings that are not musical performances (e.g., theater, comedy, sports, exhibitions, parties, karaoke or festivals without specific performing bands).

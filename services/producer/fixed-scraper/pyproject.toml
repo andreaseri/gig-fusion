@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "fixed-scraper"
+version = "0.1.0"
+package-mode = false
+description = "Date enrichment for gigfusion"
+authors = ["Andreas Eri <andreas@eri.io>"]
+packages = [{ include = "src", from = "." }]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+common = { path = "../../common", develop = true, extras = ["full"] }
+
+requests = "^2.32.5"
+beautifulsoup4 = "^4.14.2"
+python-dateutil = "^2.9.0.post0"
+musicbrainzngs = "^0.7.1"
+meilisearch = "^0.37.0"
+
+[tool.semantic_release]
+commit_parser = "conventional-monorepo"
+tag_format = "scraper@{version}"
+upload_to_pypi = false
+upload_to_release = false
+version_toml = ["pyproject.toml:tool.poetry,project.version"]
+vcs_release = false
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.branches."feat/github-actions"]
+match = "feat/github-actions"
+prerelease = true
+
+[tool.semantic_release.changelog]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.commit_parser_options]
+path_filters = ["."]
+scope_prefix = "scraper-"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

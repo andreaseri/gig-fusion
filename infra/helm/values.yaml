@@ -81,6 +81,10 @@ meili:
 scraper:
   schedule: "0 3 * * *"    # runs daily at 03:00
   imagePullPolicy: IfNotPresent
+  persistence:
+    enabled: false
+    storageClass: ""
+    size: 1Gi
 
 resources:
   limits:

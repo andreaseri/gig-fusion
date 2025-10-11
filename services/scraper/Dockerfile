@@ -42,7 +42,8 @@ RUN mkdir -p /data/raw/underdog \
     && chmod +x /entrypoint.sh
 
 ENV MEILI_URL="http://meilisearch:7700" \
-    MEILI_API_KEY="tiMpun-mipvy5-tehxiw"
+    MEILI_API_KEY="tiMpun-mipvy5-tehxiw" \
+    DATA_PATH="/data/raw/underdog"
 
 # run scraper and reindex
-ENTRYPOINT [ "/entrypoint.sh", "--path", "/data/raw/underdog"]
+ENTRYPOINT [ "/entrypoint.sh"]

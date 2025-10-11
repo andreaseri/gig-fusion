@@ -16,6 +16,12 @@ spec:
         spec:
           serviceAccountName: {{ include "gigfusion.serviceAccountName" . }}
           restartPolicy: OnFailure
+{{- if .Values.scraper.persistence.enabled }}
+          volumes:
+            - name: shared-storage
+              persistentVolumeClaim:
+                claimName: {{ include "gigfusion.fullname" . }}-pvc
+  {{- end }}
           containers:
             - name: scraper
               image: "{{ .Values.image.scraper.repository }}:{{ .Values.image.scraper.tag }}"
@@ -32,4 +38,34 @@ spec:
 {{- else }}
                 - name: MEILI_API_KEY
                   value: "{{ .Values.meili.masterKey }}"
+{{- end }}
+{{- if .Values.scraper.persistence.enabled }}
+                - name: SCRAPER_STORAGE_PATH
+                  value: "/data/shared"
+{{- end }}
+{{- with .Values.resources }}
+              resources:
+{{ toYaml . | indent 16 }}
+{{- end }}
+{{- if .Values.scraper.persistence.enabled }}
+              volumeMounts:
+                - name: shared-storage
+                  mountPath: /data/shared
+{{- end }}  
+{{- if .Values.scraper.persistence.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "gigfusion.fullname" . }}-pvc
+  labels:
+    app.kubernetes.io/revision: {{ .Release.Revision | quote }}
+spec:
+  accessModes: ["ReadWriteMany"]
+  resources:
+    requests:
+      storage: {{ .Values.scraper.persistence.size }}
+  {{- if .Values.scraper.persistence.storageClass }}
+  storageClassName: "{{ .Values.scraper.persistence.storageClass }}"
+  {{- end }}
 {{- end }}

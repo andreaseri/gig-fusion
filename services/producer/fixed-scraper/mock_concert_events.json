@@ -1,0 +1,910 @@
+[
+  {
+    "origin": "Samstag, 11. Oktober Highway Patrol [D] / Juke Joint Pimps [D] Klub der 40 präsentiert... Einlass: 20h, Beginn: 21.30h, Eintritt 14€",
+    "date": "2023-10-11T21:30:00",
+    "band": [
+      "Highway Patrol",
+      "Juke Joint Pimps"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Blues",
+      "Soul",
+      "Rock'n'Roll"
+    ]
+  },
+  {
+    "origin": "Dienstag, 14. Oktober Tsushimamire [JAP] / Keine Faxxen [D] Noise-Pop / Indie-Art-Punk Einlass: 20h, Beginn: 21h, Eintritt 14€",
+    "date": "2023-10-14T21:00:00",
+    "band": [
+      "Tsushimamire",
+      "Keine Faxxen"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Noise-Pop",
+      "Indie-Art-Punk"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 16. Oktober Alien Chicks [UK] / Roberto Punko [D] Post-Punk Einlass: 20h, Beginn: 21h, Eintritt 14€",
+    "date": "2023-10-16T21:00:00",
+    "band": [
+      "Alien Chicks",
+      "Roberto Punko"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Post-Punk"
+    ]
+  },
+  {
+    "origin": "Freitag, 17. Oktober Angerboys [D] / Gebretter [D] / Pipi Got Wasted [D] Lotta präsentiert... Einlass: 20h, Beginn: 21h, Eintritt:13€",
+    "date": "2023-10-17T21:00:00",
+    "band": [
+      "Angerboys",
+      "Gebretter",
+      "Pipi Got Wasted"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Hardcore Punk"
+    ]
+  },
+  {
+    "origin": "Samstag, 18. Oktober The Backyard Band [D] / Mono Sapiens [D] Garage-Rock'n'Roll Einlass: 20h, Beginn: 21:30h, Eintritt 14€",
+    "date": "2023-10-18T21:30:00",
+    "band": [
+      "The Backyard Band",
+      "Mono Sapiens"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Garage-Rock'n'Roll"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 22. Oktober Gyasi [USA] / Uniporn [D] Glam-Rock Einlass: 20h, Beginn: 21h, Eintritt 15€",
+    "date": "2023-10-22T21:00:00",
+    "band": [
+      "Gyasi",
+      "Uniporn"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Glam-Rock"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 23. Oktober Komatsu [NL] / Exdirectory [D] sludge, stoner, metal Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-10-23T21:00:00",
+    "band": [
+      "Komatsu",
+      "Exdirectory"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "sludge",
+      "stoner",
+      "metal"
+    ]
+  },
+  {
+    "origin": "Freitag, 24. Oktober Kodder [D] / Mad Woosch [D] Punk Einlass: 20h, Beginn: 21:30h, Eintritt 14€",
+    "date": "2023-10-24T21:30:00",
+    "band": [
+      "Kodder",
+      "Mad Woosch"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punk"
+    ]
+  },
+  {
+    "origin": "Samstag, 25. Oktober The Dirty Denims [NL] / Superfuse [D] Happy Hardrock Einlass: 20h, Beginn: 21:30h, Eintritt 14€",
+    "date": "2023-10-25T21:30:00",
+    "band": [
+      "The Dirty Denims",
+      "Superfuse"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Happy Hardrock"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 29. Oktober The Quakes [USA] / The Nipple Twisters [D] Psychobilly Einlass: 20h, Beginn: 21h, Eintritt 16€",
+    "date": "2023-10-29T21:00:00",
+    "band": [
+      "The Quakes",
+      "The Nipple Twisters"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 16.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Psychobilly"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 30. Oktober Houndshark [D] / Vincent Göttler (Neumatic Parlo) [D] Post Punk / Art Rock Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-10-30T21:00:00",
+    "band": [
+      "Houndshark",
+      "Vincent Göttler"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Post Punk",
+      "Art Rock"
+    ]
+  },
+  {
+    "origin": "Freitag, 31. Oktober Eat Lipstick [D] / Stinky Pinkys [D] Glam-Rock / Dirty Rock'n'Roll Einlass: 20h, Beginn: 21.30h, Eintritt 14€",
+    "date": "2023-10-31T21:30:00",
+    "band": [
+      "Eat Lipstick",
+      "Stinky Pinkys"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Glam-Rock",
+      "Dirty Rock'n'Roll"
+    ]
+  },
+  {
+    "origin": "Samstag, 01. November Banana Peel Slippers [D] Ska Einlass: 20h, Beginn: 21.30h, Eintritt 15€",
+    "date": "2023-11-01T21:30:00",
+    "band": [
+      "Banana Peel Slippers"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Ska"
+    ]
+  },
+  {
+    "origin": "Dienstag, 04. November Fruit Tones [UK] / Jizzlobbers [D] Garage-Rock´n´Roll Einlass: 20h, Beginn: 21h, Eintritt: 13€",
+    "date": "2023-11-04T21:00:00",
+    "band": [
+      "Fruit Tones",
+      "Jizzlobbers"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Garage-Rock'n'Roll"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 06. November La Jungle [BEL] / In Gaffa [D] kraut‑rock-trance-noise Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-11-06T21:00:00",
+    "band": [
+      "La Jungle",
+      "In Gaffa"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "kraut-rock-trance-noise"
+    ]
+  },
+  {
+    "origin": "Freitag, 07. November Bazooka Zirkus [D] / Syff [D] HC-Punk Einlass: 20h, Beginn: 21.30h, Eintritt: 13€",
+    "date": "2023-11-07T21:30:00",
+    "band": [
+      "Bazooka Zirkus",
+      "Syff"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "HC-Punk"
+    ]
+  },
+  {
+    "origin": "Samstag, 08. November The Sences [GRI] / Velvet Attack [D] Moody Teen-Garage / Indie, 60s Garage Einlass: 20h, Beginn: 21.30h, Eintritt 15€",
+    "date": "2023-11-08T21:30:00",
+    "band": [
+      "The Sences",
+      "Velvet Attack"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Moody Teen-Garage",
+      "Indie",
+      "60s Garage"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 12. November Goblin Daycare [TUR] / Klimakiller [D] Lo-Fi Punk / Egg-Punk vs. Independent Samba Punk Rock Einlass: 20h, Beginn: 21h, Eintritt 14€",
+    "date": "2023-11-12T21:00:00",
+    "band": [
+      "Goblin Daycare",
+      "Klimakiller"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Lo-Fi Punk",
+      "Egg-Punk",
+      "Independent Samba Punk Rock"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 13. November The Turbo ACs [USA] / Junkyard Queens [D] Surf-Punk'n'Roll Einlass: 20h, Beginn: 21h, Eintritt 15€",
+    "date": "2023-11-13T21:00:00",
+    "band": [
+      "The Turbo ACs",
+      "Junkyard Queens"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Surf-Punk'n'Roll"
+    ]
+  },
+  {
+    "origin": "Freitag, 14. November Der Dumme August [D] / Request Denied [D] Punkrock Einlass: 20h, beginn: 21:30h, Eintritt 13€",
+    "date": "2023-11-14T21:30:00",
+    "band": [
+      "Der Dumme August",
+      "Request Denied"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punkrock"
+    ]
+  },
+  {
+    "origin": "Samstag, 15. November The Crambones [D] / Indolent [D] Two Types Trashique Einlass: 20h, Beginn: 21.30h, Eintritt 13€",
+    "date": "2023-11-15T21:30:00",
+    "band": [
+      "The Crambones",
+      "Indolent"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Two Types Trashique"
+    ]
+  },
+  {
+    "origin": "Dienstag, 18. November The Darts [USA] / Muff (ex-WOOD) [D] Garage-Rock Einlass: 20h, Beginn: 21h, Eintritt: 15€",
+    "date": "2023-11-18T21:00:00",
+    "band": [
+      "The Darts",
+      "Muff"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Garage-Rock"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 19. November Park + Riot [D] / Alteri [D] Hardcore, Sludge, Math Einlass: 20h, Beginn: 21h, Eintritt: 13€",
+    "date": "2023-11-19T21:00:00",
+    "band": [
+      "Park + Riot",
+      "Alteri"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Hardcore",
+      "Sludge",
+      "Math"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 20. November Sedlmeir [D] Hardrock-Roboter Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-11-20T21:00:00",
+    "band": [
+      "Sedlmeir"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Hardrock"
+    ]
+  },
+  {
+    "origin": "Freitag, 21. November Karoshi [D] / The Extras [D] / Ernte 77 [D] Rookie West Herbstfest Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-11-21T21:00:00",
+    "band": [
+      "Karoshi",
+      "The Extras",
+      "Ernte 77"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "Samstag, 22. November The Schizophonics [USA] / Dirtshakes [D] Garage-Rock Einlass: 20h, Beginn: 21.30h, Eintritt: 16€",
+    "date": "2023-11-22T21:30:00",
+    "band": [
+      "The Schizophonics",
+      "Dirtshakes"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 16.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Garage-Rock"
+    ]
+  },
+  {
+    "origin": "Dienstag, 25. November Ratas Rabiosas [BRA] / Eddy Edge [D] Punk / HC Einlass: 20h, Beginn: 21h, Eintritt: 13€",
+    "date": "2023-11-25T21:00:00",
+    "band": [
+      "Ratas Rabiosas",
+      "Eddy Edge"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punk",
+      "HC"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 26. November Long Tall Texans [UK] / Psychofarmaka [D] Psychobilly Einlass: 20h, Beginn: 21h, Eintritt: 15€",
+    "date": "2023-11-26T21:00:00",
+    "band": [
+      "Long Tall Texans",
+      "Psychofarmaka"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Psychobilly"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 27. November Human Toys [FRA] / Torpedo Mayer [D] Punkrock Einlass: 20h, Beginn: 21h, Eintritt: 13€",
+    "date": "2023-11-27T21:00:00",
+    "band": [
+      "Human Toys",
+      "Torpedo Mayer"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punkrock"
+    ]
+  },
+  {
+    "origin": "Freitag, 28. November Catbreath [D] / Disminded [D] Lotta präsentiert: Einlass: 20h, Beginn: 21.30h, Eintritt: 14€",
+    "date": "2023-11-28T21:30:00",
+    "band": [
+      "Catbreath",
+      "Disminded"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "Samstag, 29. November Western Mecanique [FRA] / Manic Liberation [D] Reggae-Punk-Soul vs. Britpop-/Postpunk Einlass: 20h, Beginn: 21.30h, Eintritt 14€",
+    "date": "2023-11-29T21:30:00",
+    "band": [
+      "Western Mecanique",
+      "Manic Liberation"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Reggae-Punk-Soul",
+      "Britpop",
+      "Postpunk"
+    ]
+  },
+  {
+    "origin": "Freitag, 05. Dezember Nichts [D] Post-Punk, New Wave, NDW Einlass: 20h, Beginn: 21.30h, Eintritt 15€",
+    "date": "2023-12-05T21:30:00",
+    "band": [
+      "Nichts"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Post-Punk",
+      "New Wave",
+      "NDW"
+    ]
+  },
+  {
+    "origin": "Samstag, 06. Dezember The Wylde Tryfles [FRA] / The Outcrowd [D] 60s-Garage-Rock'n'Roll Einlass: 20h, Beginn: 21.30h, Eintritt 14€",
+    "date": "2023-12-06T21:30:00",
+    "band": [
+      "The Wylde Tryfles",
+      "The Outcrowd"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "60s-Garage-Rock'n'Roll"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 10. Dezember a/lpaca [ITA] / Stranded [D] psych-punk Einlass: 20h, Beginn: 21h, Eintritt 14€",
+    "date": "2023-12-10T21:00:00",
+    "band": [
+      "a/lpaca",
+      "Stranded"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "psych-punk"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 11. Dezember Shallow Waves [CAN] / Lo Seal [D] post-punk/ industrial/ noise/ techno Einlass: 20h, Beginn: 21h, Eintritt 14€",
+    "date": "2023-12-11T21:00:00",
+    "band": [
+      "Shallow Waves",
+      "Lo Seal"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "post-punk",
+      "industrial",
+      "noise",
+      "techno"
+    ]
+  },
+  {
+    "origin": "Freitag, 12. Dezember Keine Ahnung [D] / Gutbürgerlich [D] / Klaus der Geiger & Marco Pankow [D] 25 Jahre \"Keine Ahnung\" Einlass: 20h, Beginn: 21h, Eintritt 13€",
+    "date": "2023-12-12T21:00:00",
+    "band": [
+      "Keine Ahnung",
+      "Gutbürgerlich",
+      "Klaus der Geiger",
+      "Marco Pankow"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Polit-Punk"
+    ]
+  },
+  {
+    "origin": "Samstag, 13. Dezember The Spanks [BEL] / The Garbage Gang [BEL] Garage-Night Belgique Einlass: 20h, Beginn: 21.30h, Eintritt 13€",
+    "date": "2023-12-13T21:30:00",
+    "band": [
+      "The Spanks",
+      "The Garbage Gang"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Garage Rock"
+    ]
+  },
+  {
+    "origin": "Dienstag, 16. Dezember Sham69 [UK] / The Nopes [D] Punkrock Einlass: 20h, Beginn: 21h, Eintritt 16€ (Nachholkonzert, die Tickets vom 17.12.2024 bleiben gültig!)",
+    "date": "2023-12-16T21:00:00",
+    "band": [
+      "Sham69",
+      "The Nopes"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 16.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "Nachholkonzert",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punkrock"
+    ]
+  },
+  {
+    "origin": "Donnerstag, 18. Dezember Plörre [Köln] / Junior Day League [Köln] / God Bless The Monkey Asronaut [Köln] Indie-Rock Einlass: 20h, Beginn: 21h, Eintritt: 14€",
+    "date": "2023-12-18T21:00:00",
+    "band": [
+      "Plörre",
+      "Junior Day League",
+      "God Bless The Monkey Asronaut"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Indie-Rock"
+    ]
+  },
+  {
+    "origin": "Freitag, 19. Dezember Radioactive Toys [D] HC / Punk +++ kommt alle +++ die band hat versprochen zu proben und sich was schönen anzuziehen +++ das wird bestimmt gut +++ Einlass: 20h, Beginn: 21.30h, Eintritt 14€",
+    "date": "2023-12-19T21:30:00",
+    "band": [
+      "Radioactive Toys"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 14.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": [
+      "HC",
+      "Punk"
+    ]
+  },
+  {
+    "origin": "Samstag, 20. Dezember The Clerks feat. Arthur Kay [D/UK] Ska Seit 2000 stehen The Clerks aus Köln für feinsten Offbeat in all seinen Facetten – von Trad-Ska über Two Tone bis hin zu Reggae & Dub. Einlass: 20h, Beginn: 21.30h, Eintritt 20€",
+    "date": "2023-12-20T21:30:00",
+    "band": [
+      "The Clerks",
+      "Arthur Kay"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 20.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": [
+      "Ska"
+    ]
+  },
+  {
+    "origin": "Sonntag, 21. Dezember Doktor Dralle [D] / Golden Girls [D] Moshpit unterm Mistelzweig II Einlass: 20h, Beginn: 21h, Eintritt: 15€",
+    "date": "2023-12-21T21:00:00",
+    "band": [
+      "Doktor Dralle",
+      "Golden Girls"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": [
+      "Punk-Rock"
+    ]
+  },
+  {
+    "origin": "Dienstag, 23. Dezember Detlef [D] / Die Fingernägel [D] Punkrock Einlass: 20h, Beginn: 21:30h, Eintritt 15€",
+    "date": "2023-12-23T21:30:00",
+    "band": [
+      "Detlef",
+      "Die Fingernägel"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 15.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": [
+      "Punkrock"
+    ]
+  },
+  {
+    "origin": "Freitag, 26. Dezember TipTop [Köln] Einlass: 20h, Beginn: 21:30h, Eintritt 13€",
+    "date": "2023-12-26T21:30:00",
+    "band": [
+      "TipTop"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "Samstag, 27. Dezember Beatrevolver [D] Einlass: 20h, Beginn: 21.30h, Eintritt 13€",
+    "date": "2023-12-27T21:30:00",
+    "band": [
+      "Beatrevolver"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "Sonntag, 28. Dezember Bolle And The Very Good Looking Boys [D] Rock Anlässlich ihres 22. Geburtstags performen Bolle And The Very Good Lookin‘ Boys in einem Regen aus Bier und Kettenfett die berüchtigte Winterzaubertraum-Show in den heiligen Hallen ihrer verwegenen Lieblingskneipe. Einlass: 20h, Beginn: 21h, Eintritt 13€",
+    "date": "2023-12-28T21:00:00",
+    "band": [
+      "Bolle And The Very Good Looking Boys"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Rock"
+    ]
+  },
+  {
+    "origin": "Montag, 29. Dezember Mark Foggo [UK/NL] Ska Mark Foggo is a British ska musician and songwriter renowned for his energetic stage presence and unique approach to the genre. Einlass: 20h, Beginn: 21h, Eintritt: 20€",
+    "date": "2023-12-29T21:00:00",
+    "band": [
+      "Mark Foggo"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 20.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Ska"
+    ]
+  },
+  {
+    "origin": "Mittwoch, 31. Dezember Turboboost - Harte Band [D] Lambada statt Böller Einlass: 20h, Beginn: 21.30h, Eintritt: 13€",
+    "date": "2023-12-31T21:30:00",
+    "band": [
+      "Turboboost"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": []
+  },
+  {
+    "origin": "Freitag, 02. Januar As We Go [Köln] / Knife Breath [Pott] / Pretzel Bitez [Köln] Punkrock Einlass: 20h, Beginn: 21h, Eintritt: 13€",
+    "date": "2024-01-02T21:00:00",
+    "band": [
+      "As We Go",
+      "Knife Breath",
+      "Pretzel Bitez"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Punkrock"
+    ]
+  },
+  {
+    "origin": "Samstag, 03. Januar The Minestompers [Köln] Psychobilly Einlass: 20h, Beginn: 21.30h, Eintritt: 13€",
+    "date": "2024-01-03T21:30:00",
+    "band": [
+      "The Minestompers"
+    ],
+    "location": "Sonic Ballroom",
+    "price_eur": 13.0,
+    "status_kind": "verfügbar",
+    "new_location": "",
+    "status_raw": "",
+    "section": "Sonic Ballroom",
+    "members": [],
+    "genres": [
+      "Psychobilly"
+    ]
+  }
+]
